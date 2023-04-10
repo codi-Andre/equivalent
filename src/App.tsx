@@ -1,5 +1,5 @@
 import { Home } from './pages'
-import ThemeProvider from './styles/ThemeProvider'
+import ThemeProvider from 'styles/ThemeProvider'
 
 function App() {
   return (
