@@ -1,7 +1,7 @@
-import { Content } from "./Home.styles";
+import { Content } from './Home.styles'
 
 function Home() {
-  return <Content>Home</Content>;
+  return <Content>Home</Content>
 }
 
-export default Home;
+export default Home
