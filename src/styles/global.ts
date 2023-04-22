@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background-color: ${({ theme }) => theme.colors.grayLight};
         color: ${({ theme }) => theme.colors.primary};
-
+        
         /* It only works on macOS */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: auto;

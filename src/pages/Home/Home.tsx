@@ -1,5 +1,7 @@
+import { Icon } from '@/components/Icon'
 import {
   Button,
+  ButtonsContainer,
   Container,
   Content,
   ContentWrapper,
@@ -15,7 +17,15 @@ function Home() {
   return (
     <Container>
       <ContentWrapper>
-        <Navigator />
+        <Navigator>
+          <strong>
+            <Icon
+              name="balance"
+              size={42}
+            />
+            Equivalent
+          </strong>
+        </Navigator>
         <Content>
           <Title>Seja bem vindo a nossa calculadora online</Title>
           <Subtitle>Por favor insira os dados abaixo</Subtitle>
@@ -32,10 +42,13 @@ function Home() {
           <Quantity />
           {/* Seletor da substituinte */}
           <Selector list="food" />
-          {/* Botão calcular */}
-          <Button>Calcular</Button>
-          {/* Botao limpar */}
-          <Button>Limpar</Button>
+
+          <ButtonsContainer>
+            {/* Botão calcular */}
+            <Button>Calcular</Button>
+            {/* Botao limpar */}
+            <Button>Limpar</Button>
+          </ButtonsContainer>
         </Content>
       </ContentWrapper>
       <ImageWrapper />
