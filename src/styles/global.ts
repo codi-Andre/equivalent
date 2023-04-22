@@ -6,22 +6,18 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-
     :focus {
         outline: none;
         box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.grayDark};
     }
-
     body {
         background-color: ${({ theme }) => theme.colors.grayLight};
         color: ${({ theme }) => theme.colors.primary};
-
         /* It only works on macOS */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: auto;
         /* Firefox similar property */
     }
-
     body, input, textarea, button {
         font-family: sans-serif;
         font-weight: 400;
