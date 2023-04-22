@@ -2,7 +2,7 @@ export default {
   colors: {
     accent: '#b08564',
     accentDark: '#ad774e',
-    emphasis: 'emphasis',
+    emphasis: '#01ffc1',
     border: 'border',
     grayLight: '#eeedee',
     grayDark: '#d9d2d7',
