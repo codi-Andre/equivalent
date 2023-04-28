@@ -9,10 +9,10 @@ import {
   Container,
   Content,
   ContentWrapper,
-  ImageWrapper,
   Subtitle,
   Title,
 } from './Home.styles'
+import { Slider } from './slider/Slider'
 
 function Home() {
   return (
@@ -44,7 +44,7 @@ function Home() {
           </ButtonsContainer>
         </Content>
       </ContentWrapper>
-      <ImageWrapper />
+      <Slider />
     </Container>
   )
 }
