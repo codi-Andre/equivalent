@@ -6,3 +6,4 @@ export {
   Quantity,
   Selector,
 } from './FormElements'
+export { Navigator } from './Navegation/Navigator'
