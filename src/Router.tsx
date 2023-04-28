@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { Home } from '@pages'
+import { AboutUs, FoodList, Home } from '@pages'
 
 export function Router() {
   return (
@@ -7,6 +7,14 @@ export function Router() {
       <Route
         path="/"
         element={<Home />}
+      />
+      <Route
+        path="/food-list"
+        element={<FoodList />}
+      />
+      <Route
+        path="/about-us"
+        element={<AboutUs />}
       />
     </Routes>
   )

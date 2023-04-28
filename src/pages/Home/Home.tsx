@@ -1,10 +1,15 @@
-import { Icon, Button, ButtonsContainer, Quantity, Selector } from '@components'
+import {
+  Navigator,
+  Button,
+  ButtonsContainer,
+  Quantity,
+  Selector,
+} from '@components'
 import {
   Container,
   Content,
   ContentWrapper,
   ImageWrapper,
-  Navigator,
   Subtitle,
   Title,
 } from './Home.styles'
@@ -13,15 +18,7 @@ function Home() {
   return (
     <Container>
       <ContentWrapper>
-        <Navigator>
-          <strong>
-            <Icon
-              name="balance"
-              size={42}
-            />
-            Equivalent
-          </strong>
-        </Navigator>
+        <Navigator />
         <Content>
           <Title>Seja bem vindo a nossa calculadora online</Title>
           <Subtitle>Por favor insira os dados abaixo</Subtitle>
