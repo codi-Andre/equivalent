@@ -1,14 +1,10 @@
-import { Icon } from '@/components/Icon'
+import { Icon, Button, ButtonsContainer, Quantity, Selector } from '@components'
 import {
-  Button,
-  ButtonsContainer,
   Container,
   Content,
   ContentWrapper,
   ImageWrapper,
   Navigator,
-  Quantity,
-  Selector,
   Subtitle,
   Title,
 } from './Home.styles'
