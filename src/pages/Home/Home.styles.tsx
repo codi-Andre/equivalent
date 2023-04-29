@@ -12,11 +12,6 @@ export const ContentWrapper = styled.div`
   min-width: 500px;
 `
 
-export const Navigator = styled.div`
-  background-color: ${({ theme }) => theme.colors.accent};
-  height: 70px;
-`
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
