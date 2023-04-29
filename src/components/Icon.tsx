@@ -17,7 +17,6 @@ const GoogleIcon = styled.span<IconProps>`
   font-size: ${props => props.size}px;
   background-color: ${props => props.bgColor};
   color: ${props => props.color};
-  height: 100%;
   padding: 0.3rem;
   vertical-align: ${props => props.align || 'middle'};
 `
