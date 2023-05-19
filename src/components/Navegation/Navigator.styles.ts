@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Header = styled.header`
-  background-color: ${({ theme }) => theme.colors.accent};
   height: 70px;
   display: flex;
   align-items: center;
@@ -21,16 +20,14 @@ export const Header = styled.header`
 
   a:focus {
     color: ${({ theme }) => theme.colors.accent};
-    background-color: ${({ theme }) => theme.colors.light};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent};
   }
 
   a:hover {
     color: ${({ theme }) => theme.colors.accent};
-    background-color: ${({ theme }) => theme.colors.light};
   }
 
   a.active {
     color: ${({ theme }) => theme.colors.accent};
-    background-color: ${({ theme }) => theme.colors.light};
   }
 `

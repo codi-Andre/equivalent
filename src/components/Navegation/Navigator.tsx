@@ -5,14 +5,6 @@ import { Header } from './Navigator.styles'
 export function Navigator() {
   return (
     <Header>
-      <h1>
-        <Icon
-          name="balance"
-          size={36}
-        />
-        Equivalent
-      </h1>
-
       <nav>
         <NavLink to="/">
           <Icon
