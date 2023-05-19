@@ -9,11 +9,10 @@ export const GlobalStyle = createGlobalStyle`
 
     :focus {
         outline: none;
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.secondary};
     }
 
     body {
-        background-color: ${({ theme }) => theme.colors.grayLight};
+        background-color: ${({ theme }) => theme.colors.light};
         color: ${({ theme }) => theme.colors.dark};
         
         /* It only works on macOS */
