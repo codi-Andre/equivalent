@@ -9,12 +9,12 @@ export const GlobalStyle = createGlobalStyle`
 
     :focus {
         outline: none;
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.grayDark};
+        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.secondary};
     }
 
     body {
         background-color: ${({ theme }) => theme.colors.grayLight};
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${({ theme }) => theme.colors.dark};
         
         /* It only works on macOS */
         -webkit-font-smoothing: antialiased;
