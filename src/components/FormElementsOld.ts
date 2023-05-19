@@ -20,8 +20,6 @@ export const Selector = styled.input`
   `}
 `
 
-export const Quantity = styled(Selector)``
-
 export const Button = styled.button`
   height: 50px;
   width: 128px;

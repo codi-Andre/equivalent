@@ -1,4 +1,4 @@
-import { Navigator, Quantity, Selector, Button } from '@components'
+import { Navigator, Selector, Button } from '@components'
 import locale from '@/assets/locale.json'
 import {
   Container,
@@ -18,7 +18,7 @@ function Home() {
         <Content>
           <Title>{locale.welcome}</Title>
           <Subtitle>{locale.insertData}</Subtitle>
-          {/* Seletor de referencia */}
+
           <Selector
             listId="food"
             title="Alimento base"
@@ -30,9 +30,11 @@ function Home() {
             <option value="Purê" />
           </datalist>
 
-          {/* Quantidade  */}
-          <Quantity />
-          {/* Seletor da substituinte */}
+          <Selector
+            title="Quantidade (g)"
+            type="number"
+          />
+
           <Selector
             listId="food"
             title="Substituinte"
