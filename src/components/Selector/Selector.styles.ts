@@ -1,12 +1,14 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.form`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `
 
-export const Title = styled.h5`
+export const Title = styled.label`
   margin: 4px;
+  font-size: small;
+  font-weight: bold;
 `
 
 export const Selector = styled.input`

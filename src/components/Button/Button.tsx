@@ -1,9 +1,10 @@
+import { ReactNode } from 'react'
 import * as S from './Button.styles'
 
 interface ButtonProps {
   isNegative?: boolean
   onClick?: () => void
-  children?: string
+  children: ReactNode
 }
 
 function Button({ isNegative, onClick, children = 'button' }: ButtonProps) {
