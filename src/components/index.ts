@@ -2,7 +2,6 @@ export { Icon } from './Icon'
 export {
   Button as ButtonOld,
   FormContainer,
-  Quantity,
   Selector as SelectorOld,
 } from './FormElementsOld'
 
