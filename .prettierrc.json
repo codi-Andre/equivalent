@@ -2,7 +2,7 @@
   "arrowParens": "avoid",
   "quoteProps": "as-needed",
   "semi": false,
-  "singleAttributePerLine": false,
+  "singleAttributePerLine": true,
   "singleQuote": true,
   "trailingComma": "all"
 }
