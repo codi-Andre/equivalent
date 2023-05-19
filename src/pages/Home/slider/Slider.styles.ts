@@ -106,7 +106,7 @@ export const SliderContainer = styled.div`
   }
 
   .dot.active {
-    background: ${({ theme }) => theme.colors.emphasis};
+    background: ${({ theme }) => theme.colors.accent};
   }
 
   .arrow {
