@@ -1,16 +1,13 @@
-import {
-  Navigator,
-  Button,
-  ButtonsContainer,
-  Quantity,
-  Selector,
-} from '@components'
+import { Navigator, Quantity, Selector } from '@components'
+import locale from '@/assets/locale.json'
+import { Button } from '@/components/FormElements'
 import {
   Container,
   Content,
   ContentWrapper,
   Subtitle,
   Title,
+  ButtonsContainer,
 } from './Home.styles'
 import { Slider } from './slider/Slider'
 
@@ -20,8 +17,8 @@ function Home() {
       <ContentWrapper>
         <Navigator />
         <Content>
-          <Title>Seja bem vindo a nossa calculadora online</Title>
-          <Subtitle>Por favor insira os dados abaixo</Subtitle>
+          <Title>{locale.welcome}</Title>
+          <Subtitle>{locale.insertData}</Subtitle>
           {/* Seletor de referencia */}
           <Selector list="food" />
 
@@ -40,7 +37,7 @@ function Home() {
             {/* Botão calcular */}
             <Button>Calcular</Button>
             {/* Botao limpar */}
-            <Button>Limpar</Button>
+            <Button isNegative>Limpar</Button>
           </ButtonsContainer>
         </Content>
       </ContentWrapper>

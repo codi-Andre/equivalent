@@ -20,7 +20,6 @@ export const Header = styled.header`
 
   a:focus {
     color: ${({ theme }) => theme.colors.accent};
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent};
   }
 
   a:hover {

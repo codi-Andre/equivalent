@@ -21,7 +21,6 @@ export const Content = styled.div`
   gap: 32px;
 
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.light};
 `
 export const Title = styled.h1`
   text-align: center;
@@ -34,4 +33,8 @@ export const Subtitle = styled.h5`
 export const ImageWrapper = styled.div`
   flex: 1;
   background-color: aliceblue;
+`
+export const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 32px;
 `
