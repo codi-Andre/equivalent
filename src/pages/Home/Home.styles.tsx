@@ -26,7 +26,7 @@ export const Title = styled.h1`
   text-align: center;
 `
 
-export const Subtitle = styled.h5`
+export const Subtitle = styled.h3`
   text-align: center;
 `
 

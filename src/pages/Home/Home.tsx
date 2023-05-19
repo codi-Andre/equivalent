@@ -19,7 +19,10 @@ function Home() {
           <Title>{locale.welcome}</Title>
           <Subtitle>{locale.insertData}</Subtitle>
           {/* Seletor de referencia */}
-          <Selector list="food" />
+          <Selector
+            listId="food"
+            title="Alimento base"
+          />
 
           <datalist id="food">
             <option value="Arroz" />
@@ -30,7 +33,10 @@ function Home() {
           {/* Quantidade  */}
           <Quantity />
           {/* Seletor da substituinte */}
-          <Selector list="food" />
+          <Selector
+            listId="food"
+            title="Substituinte"
+          />
 
           <ButtonsContainer>
             {/* Botão calcular */}
