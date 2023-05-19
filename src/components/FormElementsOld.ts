@@ -10,6 +10,10 @@ export const Selector = styled.input`
   padding: 8px;
   font-size: small;
 
+  :focus {
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.secondary};
+  }
+
   ${({ theme }) => css`
     color: ${theme.colors.secondary};
     background-color: ${theme.colors.grayLight};
