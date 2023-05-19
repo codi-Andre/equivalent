@@ -1,6 +1,5 @@
-import { Navigator, Quantity, Selector } from '@components'
+import { Navigator, Quantity, Selector, Button } from '@components'
 import locale from '@/assets/locale.json'
-import { Button } from '@/components/FormElements'
 import {
   Container,
   Content,
