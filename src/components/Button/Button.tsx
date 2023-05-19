@@ -5,13 +5,20 @@ interface ButtonProps {
   isNegative?: boolean
   onClick?: () => void
   children: ReactNode
+  type?: 'button' | 'submit' | 'reset' | undefined
 }
 
-function Button({ isNegative, onClick, children = 'button' }: ButtonProps) {
+function Button({
+  isNegative,
+  onClick,
+  children = 'button',
+  type,
+}: ButtonProps) {
   return (
     <S.Button
       isNegative={isNegative}
       onClick={onClick}
+      type={type}
     >
       {children}
     </S.Button>
