@@ -12,7 +12,7 @@ export const ContentWrapper = styled.div`
   min-width: 500px;
 `
 
-export const Content = styled.div`
+export const Content = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
