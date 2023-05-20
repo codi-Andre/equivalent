@@ -1,6 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { CloseButton, Content, Overlay } from './AddFoodModal.styles'
-import { Button, FormContainer, Icon, Selector } from '@/components'
+import {
+  FormContainer,
+  CloseButton,
+  Content,
+  Overlay,
+} from './AddFoodModal.styles'
+import { Button, Icon, Selector } from '@/components'
 
 export function AddFoodModal() {
   function handleAddFood(data: any) {
