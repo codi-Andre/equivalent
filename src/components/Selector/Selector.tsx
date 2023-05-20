@@ -6,6 +6,7 @@ interface SelectorProps {
   type?: string
   min?: number
   placeholder?: string
+  name?: string
 }
 
 function Selector({
@@ -14,6 +15,7 @@ function Selector({
   type,
   min = 1,
   placeholder,
+  name,
 }: SelectorProps) {
   return (
     <S.Container>
@@ -24,6 +26,7 @@ function Selector({
         type={type}
         min={min}
         placeholder={placeholder}
+        name={name}
       />
     </S.Container>
   )
