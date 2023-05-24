@@ -1,16 +1,12 @@
-import axios from 'axios'
-import { ReactNode, createContext, useEffect, useState } from 'react'
-
-interface Food {
-  id: number
-  name: string
-  quantity: number
-  calories: number
-  carbohydrates: number
-  proteins: number
-  fats: number
-  category?: string
-}
+import { getFoodList } from '@/api'
+import { Food } from '@/entities/food'
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 interface ContextData {
   foodList: Food[]
@@ -21,9 +17,9 @@ interface FoodContextProps {
   children: ReactNode
 }
 
-export const FoodStorage = createContext({} as ContextData)
+export const FoodContext = createContext({} as ContextData)
 
-export function FoodContext({ children }: FoodContextProps) {
+export default function FoodProvider({ children }: FoodContextProps) {
   const [foodList, setFoodList] = useState<Food[]>([])
 
   useEffect(() => {
@@ -31,24 +27,27 @@ export function FoodContext({ children }: FoodContextProps) {
   }, [])
 
   async function updateList() {
-    try {
-      const response = await axios.get('http://localhost:3000/food')
-      const list = response.data
+    const list = await getFoodList()
 
+    if (Array.isArray(list)) {
       setFoodList([...list])
-    } catch (error) {
-      console.log(error)
+    } else {
+      setFoodList([])
     }
   }
 
   return (
-    <FoodStorage.Provider
+    <FoodContext.Provider
       value={{
         foodList,
         updateList,
       }}
     >
       {children}
-    </FoodStorage.Provider>
+    </FoodContext.Provider>
   )
+}
+
+export function useFood() {
+  return useContext(FoodContext)
 }

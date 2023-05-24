@@ -1,8 +1,7 @@
-import { FoodStorage } from '@/contexts/FoodContext'
-import { useContext } from 'react'
+import { useFood } from '@/contexts'
 
 export function FoodDataList() {
-  const { foodList } = useContext(FoodStorage)
+  const { foodList } = useFood()
 
   return (
     <datalist id="food">
