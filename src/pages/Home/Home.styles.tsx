@@ -34,7 +34,15 @@ export const ImageWrapper = styled.div`
   flex: 1;
   background-color: aliceblue;
 `
-export const ButtonsContainer = styled.div`
+export const Row = styled.div<{ gap: number }>`
   display: flex;
-  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aliceblue; */
+  gap: ${({ gap }) => gap}px;
+`
+export const ResultTitle = styled.label`
+  flex: 1;
+  font-size: large;
+  font-weight: bold;
 `
