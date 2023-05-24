@@ -6,7 +6,8 @@ import {
   ContentWrapper,
   Subtitle,
   Title,
-  ButtonsContainer,
+  Row,
+  ResultTitle,
 } from './Home.styles'
 import { Slider } from './slider/Slider'
 import { FormEvent } from 'react'
@@ -32,25 +33,30 @@ function Home() {
 
           <FoodDataList />
 
-          <Selector
-            name="baseFood"
-            listId="food"
-            title="Alimento base"
-          />
+          <Row gap={16}>
+            <Selector
+              name="baseFood"
+              listId="food"
+              title="Alimento base"
+            />
 
-          <Selector
-            name="quantity"
-            title="Quantidade (g)"
-            type="number"
-          />
+            <Selector
+              name="quantity"
+              title="Quantidade (g)"
+              type="number"
+            />
+          </Row>
 
-          <Selector
-            name="substituent"
-            listId="food"
-            title="Substituinte"
-          />
+          <Row gap={16}>
+            <Selector
+              name="Substituint"
+              listId="food"
+              title="Substituinte"
+            />
+            <ResultTitle>{`${locale.result}: `}</ResultTitle>
+          </Row>
 
-          <ButtonsContainer>
+          <Row gap={32}>
             {/* Botão calcular */}
             <Button type="submit">Calcular</Button>
             {/* Botao limpar */}
@@ -60,7 +66,7 @@ function Home() {
             >
               Limpar
             </Button>
-          </ButtonsContainer>
+          </Row>
         </Content>
       </ContentWrapper>
       <Slider />
