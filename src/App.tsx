@@ -3,12 +3,15 @@ import { GlobalStyle } from '@styles/global'
 
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
+import { FoodContext } from './contexts/FoodContext'
 
 function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Router />
+        <FoodContext>
+          <Router />
+        </FoodContext>
       </BrowserRouter>
       <GlobalStyle />
     </ThemeProvider>

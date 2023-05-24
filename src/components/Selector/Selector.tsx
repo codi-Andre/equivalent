@@ -7,6 +7,7 @@ interface SelectorProps {
   min?: number
   placeholder?: string
   name?: string
+  required?: boolean | undefined
 }
 
 function Selector({
@@ -16,6 +17,7 @@ function Selector({
   min = 1,
   placeholder,
   name,
+  required,
 }: SelectorProps) {
   return (
     <S.Container>
@@ -27,6 +29,7 @@ function Selector({
         min={min}
         placeholder={placeholder}
         name={name}
+        required={required}
       />
     </S.Container>
   )

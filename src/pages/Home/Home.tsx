@@ -38,12 +38,14 @@ function Home() {
               name="baseFood"
               listId="food"
               title="Alimento base"
+              required
             />
 
             <Selector
               name="quantity"
               title="Quantidade (g)"
               type="number"
+              required
             />
           </Row>
 
@@ -52,6 +54,7 @@ function Home() {
               name="Substituint"
               listId="food"
               title="Substituinte"
+              required
             />
             <ResultTitle>{`${locale.result}: `}</ResultTitle>
           </Row>

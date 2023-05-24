@@ -1,0 +1,124 @@
+{
+  "food": [
+    {
+      "id": 1,
+      "name": "arroz",
+      "quantity": 100,
+      "calories": 130,
+      "carbohydrates": 28,
+      "fats": 0.3,
+      "proteins": 2.7,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 2,
+      "name": "banana",
+      "quantity": 100,
+      "calories": 89,
+      "carbohydrates": 23,
+      "fats": 0.3,
+      "proteins": 1.1,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 3,
+      "name": "banana-da-terra",
+      "quantity": 122,
+      "calories": 89,
+      "carbohydrates": 32,
+      "fats": 0.4,
+      "proteins": 1.3,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 4,
+      "name": "batata",
+      "quantity": 100,
+      "calories": 77,
+      "carbohydrates": 17,
+      "fats": 0.1,
+      "proteins": 2,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 5,
+      "name": "batata-doce",
+      "quantity": 100,
+      "calories": 86,
+      "carbohydrates": 20,
+      "fats": 0.1,
+      "proteins": 1.6,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 6,
+      "name": "carne bovina",
+      "quantity": 100,
+      "calories": 250,
+      "carbohydrates": 0,
+      "fats": 15,
+      "proteins": 26,
+      "category": "ricos em proteínas"
+    },
+    {
+      "id": 7,
+      "name": "carne de porco",
+      "quantity": 100,
+      "calories": 242,
+      "carbohydrates": 0,
+      "fats": 14,
+      "proteins": 27,
+      "category": "ricos em proteínas"
+    },
+    {
+      "id": 8,
+      "name": "frango",
+      "quantity": 100,
+      "calories": 239,
+      "carbohydrates": 0,
+      "fats": 14,
+      "proteins": 27,
+      "category": "ricos em proteínas"
+    },
+    {
+      "id": 9,
+      "name": "inhame",
+      "quantity": 100,
+      "calories": 118,
+      "carbohydrates": 28,
+      "fats": 0.2,
+      "proteins": 1.5,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 10,
+      "name": "mandioca",
+      "quantity": 100,
+      "calories": 159,
+      "carbohydrates": 38,
+      "fats": 0.3,
+      "proteins": 1.4,
+      "category": "ricos em carboidratos"
+    },
+    {
+      "id": 11,
+      "name": "carne de peixe",
+      "quantity": 100,
+      "calories": 206,
+      "carbohydrates": 0,
+      "fats": 12,
+      "proteins": 22,
+      "category": "ricos em proteínas"
+    },
+    {
+      "id": 12,
+      "name": "ovo",
+      "quantity": 100,
+      "calories": 155,
+      "carbohydrates": 1.1,
+      "fats": 11,
+      "proteins": 13,
+      "category": "ricos em proteínas"
+    }
+  ]
+}
