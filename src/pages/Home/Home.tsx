@@ -17,10 +17,8 @@ function Home() {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-
-    console.log(formData)
-
-    event.currentTarget.reset()
+    const formJson = Object.fromEntries(formData.entries())
+    console.log(formJson)
   }
 
   return (
