@@ -11,14 +11,23 @@ import {
 } from './Home.styles'
 import { Slider } from './slider/Slider'
 import { FormEvent } from 'react'
+import { useFood } from '@/contexts'
+import { formToUserInput } from './Home.utils'
 
 function Home() {
+  const { calculateEquivalent } = useFood()
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    // Pegando valores do form
     event.preventDefault()
     const form = event.currentTarget
-    const formData = new FormData(form)
-    const formJson = Object.fromEntries(formData.entries())
-    console.log(formJson)
+
+    // Convertendo valares para o objeto(formato) que queremos
+    const userInput = formToUserInput(form)
+
+    // Calculo do equivalente
+    const res = calculateEquivalent(userInput)
+    console.log('res', res)
   }
 
   return (
@@ -49,7 +58,7 @@ function Home() {
 
           <Row gap={16}>
             <Selector
-              name="Substituint"
+              name="substituint"
               listId="food"
               title="Substituinte"
               required
@@ -58,9 +67,7 @@ function Home() {
           </Row>
 
           <Row gap={32}>
-            {/* Botão calcular */}
             <Button type="submit">Calcular</Button>
-            {/* Botao limpar */}
             <Button
               type="reset"
               isNegative

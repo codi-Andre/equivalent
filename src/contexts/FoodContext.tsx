@@ -7,10 +7,12 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { UserInput } from './FoodContext.intefaces'
 
 interface ContextData {
   foodList: Food[]
   updateList: () => void
+  calculateEquivalent: (userInput: UserInput) => object
 }
 
 interface FoodContextProps {
@@ -36,11 +38,17 @@ export default function FoodProvider({ children }: FoodContextProps) {
     }
   }
 
+  function calculateEquivalent(userInput: UserInput) {
+    console.log('dentro do context', userInput)
+    return userInput
+  }
+
   return (
     <FoodContext.Provider
       value={{
         foodList,
         updateList,
+        calculateEquivalent,
       }}
     >
       {children}
