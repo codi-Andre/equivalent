@@ -1,28 +1,29 @@
-import { Food } from '@/entities/food'
 import * as S from './Dropdown.styles'
 import { useState } from 'react'
 
-interface DropdownProps {
+interface DropdownProps<T> {
   placeholder?: string
-  list: Food[]
-  value?: Food
-  onChangeValue: (value: Food) => void
+  list: T[]
+  value?: T
+  onChangeValue?: (value: T) => void
+  showProp?: keyof T
 }
 
-function Dropdown({
+function Dropdown<T extends { id: number | string; name?: string }>({
   placeholder = 'Select...',
   list,
   value,
   onChangeValue,
-}: DropdownProps) {
+  showProp = 'name',
+}: DropdownProps<T>) {
   const [isOpen, setIsOpen] = useState(false)
 
   function toggleDropdown() {
     setIsOpen(!isOpen)
   }
 
-  function onSelectItem(item: Food) {
-    onChangeValue(item)
+  function onSelectItem(item: T) {
+    onChangeValue?.(item)
     toggleDropdown()
   }
 
@@ -34,10 +35,14 @@ function Dropdown({
     )
   }
 
+  if (typeof list[0]?.[showProp] !== 'string') {
+    throw new Error('showProp must have string value')
+  }
+
   return (
     <S.Container>
       <S.Content>
-        <S.Title>{value?.name || placeholder}</S.Title>
+        <S.Title>{(value?.[showProp] as string) || placeholder}</S.Title>
         <S.Icon onClick={toggleDropdown} />
       </S.Content>
 
@@ -50,7 +55,7 @@ function Dropdown({
                 isSelected={value?.id === item.id}
                 onClick={() => onSelectItem(item)}
               >
-                {item.name}
+                {item[showProp] as string}
               </S.Item>
             ))}
           </S.ContentList>

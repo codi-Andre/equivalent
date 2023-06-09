@@ -48,12 +48,13 @@ function Home() {
           <Subtitle>{locale.insertData}</Subtitle>
 
           <Dropdown
+            showProp="name"
             list={foodList}
             value={baseFood}
             onChangeValue={setBaseFood}
           />
 
-          {/* <FoodDataList />
+          <FoodDataList />
 
           <Row gap={16}>
             <Selector
@@ -79,7 +80,7 @@ function Home() {
               required
             />
             <ResultTitle>{`${locale.result}: `}</ResultTitle>
-          </Row> */}
+          </Row>
 
           <Row gap={32}>
             <Button type="submit">Calcular</Button>
