@@ -5,18 +5,25 @@ import { useState } from 'react'
 interface DropdownProps {
   placeholder?: string
   list: Food[]
+  value?: Food
+  onChangeValue: (value: Food) => void
 }
 
-function Dropdown({ placeholder = 'Select...', list }: DropdownProps) {
+function Dropdown({
+  placeholder = 'Select...',
+  list,
+  value,
+  onChangeValue,
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedItem, setSelectedItem] = useState(-1)
 
   function toggleDropdown() {
     setIsOpen(!isOpen)
   }
 
   function onSelectItem(item: Food) {
-    setSelectedItem(item.id)
+    onChangeValue(item)
+    toggleDropdown()
   }
 
   if (list === undefined || list.length === 0) {
@@ -30,7 +37,7 @@ function Dropdown({ placeholder = 'Select...', list }: DropdownProps) {
   return (
     <S.Container>
       <S.Content>
-        <S.Title>{placeholder}</S.Title>
+        <S.Title>{value?.name || placeholder}</S.Title>
         <S.Icon onClick={toggleDropdown} />
       </S.Content>
 
@@ -40,7 +47,7 @@ function Dropdown({ placeholder = 'Select...', list }: DropdownProps) {
             {list.map(item => (
               <S.Item
                 key={item.id}
-                isSelected={selectedItem === item.id}
+                isSelected={value?.id === item.id}
                 onClick={() => onSelectItem(item)}
               >
                 {item.name}

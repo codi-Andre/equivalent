@@ -30,5 +30,6 @@ export const ContentList = styled.div`
   position: absolute;
 `
 export const Item = styled.div<{ isSelected: boolean }>`
-  background-color: ${({ isSelected }) => (isSelected ? 'red' : 'transpatent')};
+  background-color: ${({ isSelected, theme }) =>
+    isSelected ? theme.colors.accent : 'transpatent'};
 `

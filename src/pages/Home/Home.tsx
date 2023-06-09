@@ -1,4 +1,10 @@
-import { Navigator, Selector, Button, FoodDataList } from '@components'
+import {
+  Navigator,
+  Selector,
+  Button,
+  FoodDataList,
+  Dropdown,
+} from '@components'
 import locale from '@/assets/locale.json'
 import {
   Container,
@@ -10,18 +16,21 @@ import {
   ResultTitle,
 } from './Home.styles'
 import { Slider } from './slider/Slider'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import { useFood } from '@/contexts'
 import { formToUserInput } from './Home.utils'
+import { Food } from '@/entities/food'
 
 function Home() {
-  const { calculateEquivalent } = useFood()
+  const { calculateEquivalent, foodList } = useFood()
+  const [baseFood, setBaseFood] = useState<Food | undefined>()
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     // Pegando valores do form
     event.preventDefault()
     const form = event.currentTarget
 
+    console.log('escolhido baseFood', baseFood)
     // Convertendo valares para o objeto(formato) que queremos
     const userInput = formToUserInput(form)
 
@@ -38,7 +47,13 @@ function Home() {
           <Title>{locale.welcome}</Title>
           <Subtitle>{locale.insertData}</Subtitle>
 
-          <FoodDataList />
+          <Dropdown
+            list={foodList}
+            value={baseFood}
+            onChangeValue={setBaseFood}
+          />
+
+          {/* <FoodDataList />
 
           <Row gap={16}>
             <Selector
@@ -64,13 +79,14 @@ function Home() {
               required
             />
             <ResultTitle>{`${locale.result}: `}</ResultTitle>
-          </Row>
+          </Row> */}
 
           <Row gap={32}>
             <Button type="submit">Calcular</Button>
             <Button
               type="reset"
               isNegative
+              onClick={() => setBaseFood(undefined)}
             >
               Limpar
             </Button>
