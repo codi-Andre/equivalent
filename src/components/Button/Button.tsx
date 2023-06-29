@@ -3,6 +3,7 @@ import * as S from './Button.styles'
 
 interface ButtonProps {
   isNegative?: boolean
+  disabled?: boolean
   onClick?: () => void
   children: ReactNode
   type?: 'button' | 'submit' | 'reset' | undefined
@@ -13,9 +14,11 @@ function Button({
   onClick,
   children = 'button',
   type,
+  disabled,
 }: ButtonProps) {
   return (
     <S.Button
+      disabled={disabled}
       isNegative={isNegative}
       onClick={onClick}
       type={type}

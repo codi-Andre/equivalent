@@ -21,6 +21,17 @@ export const Button = styled.button<StyledButtonProps>`
         ${isNegative ? theme.colors.danger : theme.colors.accent};
     }
 
+    &:disabled {
+      background-color: ${theme.colors.grayDark};
+    }
+
+    &:disabled:hover,
+    &:disabled:active {
+      cursor: not-allowed;
+      background-color: ${theme.colors.grayDark};
+      color: ${theme.colors.secondary};
+    }
+
     &:active {
       border: 2px solid
         ${isNegative ? theme.colors.danger : theme.colors.accent};

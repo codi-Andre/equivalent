@@ -1,5 +1,13 @@
 {
   "welcome": "Seja bem vindo a nossa calculadora online",
   "insertData": "Por favor insira os dados abaixo",
-  "result": "Resultado"
+  "result": "Resultado",
+  "baseFoodTitle": "Alimento base",
+  "substituintTitle": "Substituinte",
+  "quantitySelector": "Quantidade (g)",
+  "calcButton": "Calcular",
+  "clearButton": "Limpar",
+  "ChooseOption": "Escolha uma opção",
+  "filteredListStatus": "Nada encontrado.",
+  "listTitle": "comidas"
 }
