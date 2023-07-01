@@ -2,6 +2,8 @@
   "welcome": "Seja bem vindo a nossa calculadora online",
   "insertData": "Por favor insira os dados abaixo",
   "result": "Resultado",
+  "ResultInGram": "grama",
+  "resultInGrams": "gramas",
   "baseFoodTitle": "Alimento base",
   "substituintTitle": "Substituinte",
   "quantitySelector": "Quantidade (g)",

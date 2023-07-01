@@ -38,11 +38,20 @@ export const Row = styled.div<{ gap: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: aliceblue; */
   gap: ${({ gap }) => gap}px;
 `
-export const ResultTitle = styled.label`
+export const ResultTitle = styled.div`
+  display: flex;
   flex: 1;
+  padding-top: 23px;
+  min-width: 200px;
+  font-size: large;
+  font-weight: bold;
+`
+
+export const Result = styled.p`
+  flex: 1;
+  padding-left: 4px;
   font-size: large;
   font-weight: bold;
 `
