@@ -12,7 +12,7 @@ import { UserInput } from './FoodContext.intefaces'
 interface ContextData {
   foodList: Food[]
   updateList: () => void
-  calculateEquivalent: (userInput: UserInput) => object
+  calculateEquivalent: (userInput: UserInput) => number
 }
 
 interface FoodContextProps {
@@ -39,8 +39,21 @@ export default function FoodProvider({ children }: FoodContextProps) {
   }
 
   function calculateEquivalent(userInput: UserInput) {
-    console.log('dentro do context', userInput)
-    return userInput
+    // encontra o valor calórico de uma grama
+    const baseFoodCaloriesPerGram = Math.round(
+      userInput.baseFood.calories / 100,
+    )
+    const substituintCaloriesPerGram = Math.round(
+      userInput.substituint.calories / 100,
+    )
+    // multiplica o alimento base pela quantidade escolhida pelo usuário
+    const totalCalories = Math.round(
+      baseFoodCaloriesPerGram * userInput.quantity,
+    )
+    // divide o valor total de calorias pelo alimento substituinte
+    const result = Math.round(totalCalories / substituintCaloriesPerGram)
+
+    return result
   }
 
   return (

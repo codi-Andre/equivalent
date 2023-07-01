@@ -70,16 +70,17 @@ export function ComboBox({
   }, [hovered])
 
   useEffect(() => {
-    if (popupExpanded) {
+    if (popupExpanded && displayValue) {
       searchInputRef.current?.focus()
+    } else if (popupExpanded) {
+      searchInputRef.current?.focus()
+      scrollListToId(0, true)
+      setKeyboardCursor(0)
       setActiveListItem(String(filteredList[0].id))
-      scrollListToId(0)
     } else {
       setQuery('')
-      setKeyboardCursor(0)
-      setActiveListItem('')
     }
-  }, [popupExpanded])
+  }, [popupExpanded, displayValue])
 
   function handleClick(e: globalThis.MouseEvent) {
     const target = e.target as HTMLElement
@@ -109,14 +110,22 @@ export function ComboBox({
     }
   }
 
-  function scrollListToId(num: number) {
+  function scrollListToId(num: number, id?: true) {
     const map = getMap()
 
-    map.get(filteredList[keyboardCursor + num].id)?.scrollIntoView({
-      behavior: 'instant',
-      block: 'nearest',
-      inline: 'center',
-    })
+    if (id) {
+      map.get(filteredList[num].id)?.scrollIntoView({
+        behavior: 'instant',
+        block: 'nearest',
+        inline: 'center',
+      })
+    } else {
+      map.get(filteredList[keyboardCursor + num].id)?.scrollIntoView({
+        behavior: 'instant',
+        block: 'nearest',
+        inline: 'center',
+      })
+    }
   }
 
   function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {

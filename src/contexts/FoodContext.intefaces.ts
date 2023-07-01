@@ -1,5 +1,7 @@
+import { Food } from '@/entities/food'
+
 export interface UserInput {
-  baseFood: string
+  baseFood: Food
   quantity: number
-  substituint: string
+  substituint: Food
 }

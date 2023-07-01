@@ -13,7 +13,7 @@ function Button({
   isNegative,
   onClick,
   children = 'button',
-  type,
+  type = 'button',
   disabled,
 }: ButtonProps) {
   return (

@@ -11,9 +11,14 @@ interface DisplayProps {
 }
 
 export function DisplayInput({ id, displayRef, displayValue }: DisplayProps) {
-  const { popupExpanded, setPopupExpanded } = useComboBox()
+  const { activeListItem, popupExpanded, setPopupExpanded } = useComboBox()
+
   return (
     <S.Display
+      aria-autocomplete="list"
+      aria-controls={`list-box--${id}`}
+      aria-expanded={popupExpanded}
+      aria-activedescendant={popupExpanded ? activeListItem : ''}
       popupExpanded={popupExpanded}
       tabIndex={0}
       ref={displayRef}

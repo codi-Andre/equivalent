@@ -8,47 +8,47 @@ import {
   Title,
   Row,
   ResultTitle,
+  Result,
 } from './Home.styles'
 import { Slider } from './slider/Slider'
-import { FormEvent, useState } from 'react'
-import { useFood } from '@/contexts'
-import { formToUserInput } from './Home.utils'
+import { useEffect, useState } from 'react'
 import { ComboBox } from '@/components/ComboBox/ComboBox'
 import { Food } from '@/entities/food'
+import { useFood } from '@/contexts'
 
 function Home() {
-  const { calculateEquivalent } = useFood()
+  const { foodList, calculateEquivalent } = useFood()
   const [selectedBaseFood, setSelectedBaseFood] = useState<Food | undefined>(
     undefined,
   )
   const [selectedSubstituint, setSelectedSubstituint] = useState<
     Food | undefined
   >(undefined)
+  const [quantity, setQuantity] = useState<string>('')
+  const [showResult, setShowResult] = useState<number>()
 
-  const { foodList } = useFood()
+  useEffect(() => {
+    setShowResult(undefined)
+  }, [selectedBaseFood, selectedSubstituint, quantity])
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    // Pegando valores do form
-    event.preventDefault()
-    const form = event.currentTarget
-
-    // Convertendo valares para o objeto(formato) que queremos
-    const userInput = formToUserInput(
-      form,
-      selectedBaseFood as Food,
-      selectedSubstituint as Food,
-    )
+  function handleSubmit() {
+    const userInput = {
+      baseFood: selectedBaseFood as Food,
+      quantity: Number(quantity),
+      substituint: selectedSubstituint as Food,
+    }
 
     // Calculo do equivalente
     const res = calculateEquivalent(userInput)
-    console.log('res', res)
+
+    setShowResult(res)
   }
 
   return (
     <Container>
       <ContentWrapper>
         <Navigator />
-        <Content onSubmit={handleSubmit}>
+        <Content>
           <Title>{locale.welcome}</Title>
           <Subtitle>{locale.insertData}</Subtitle>
 
@@ -61,10 +61,10 @@ function Home() {
             />
 
             <Selector
-              name="quantity"
+              value={quantity}
+              setValue={setQuantity}
               title={locale.quantitySelector}
               type="number"
-              required
             />
           </Row>
 
@@ -75,22 +75,35 @@ function Home() {
               selectedValue={setSelectedSubstituint}
               list={foodList}
             />
-            <ResultTitle>{`${locale.result}: `}</ResultTitle>
+            <ResultTitle>
+              {`${locale.result}: `}{' '}
+              <Result
+                role="status"
+                aria-live="polite"
+              >
+                {showResult
+                  ? showResult > 1
+                    ? showResult + ' ' + locale.resultInGrams
+                    : showResult + ' ' + locale.ResultInGram
+                  : null}
+              </Result>
+            </ResultTitle>
           </Row>
 
           <Row gap={32}>
             <Button
-              type="submit"
-              disabled={!selectedBaseFood || !selectedSubstituint}
+              disabled={!selectedBaseFood || !selectedSubstituint || !quantity}
+              onClick={() => handleSubmit()}
             >
               {locale.calcButton}
             </Button>
             <Button
-              type="reset"
               isNegative
               onClick={() => {
                 setSelectedBaseFood(undefined)
+                setQuantity('')
                 setSelectedSubstituint(undefined)
+                setShowResult(undefined)
               }}
             >
               {locale.clearButton}

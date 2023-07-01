@@ -21,7 +21,7 @@ export function SearchInput({ refNode, id, query, setQuery }: InputProps) {
       autoCapitalize="off"
       aria-controls={`list-box--${id}`}
       aria-expanded={popupExpanded}
-      aria-activedescendant={activeListItem}
+      aria-activedescendant={popupExpanded ? activeListItem : ''}
       value={query}
       onChange={e => setQuery(e.target.value)}
       onKeyDown={e => handleKeyPress(e)}
