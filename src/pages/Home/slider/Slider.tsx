@@ -2,6 +2,18 @@ import { useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { SliderContainer } from './Slider.styles'
+import Slide1 from '@/assets/slideImages/slide1.jpg'
+import Slide1hd from '@/assets/slideImages/slide1hd.jpg'
+import Slide2 from '@/assets/slideImages/slide2.jpg'
+import Slide2hd from '@/assets/slideImages/slide2hd.jpg'
+import Slide3 from '@/assets/slideImages/slide3.jpg'
+import Slide3hd from '@/assets/slideImages/slide3hd.jpg'
+import Slide4 from '@/assets/slideImages/slide4.jpg'
+import Slide4hd from '@/assets/slideImages/slide4hd.jpg'
+import Slide5 from '@/assets/slideImages/slide5.jpg'
+import Slide5hd from '@/assets/slideImages/slide5hd.jpg'
+import Slide6 from '@/assets/slideImages/slide6.jpg'
+import Slide6hd from '@/assets/slideImages/slide6hd.jpg'
 
 export function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -29,7 +41,7 @@ export function Slider() {
           if (mouseOver) return
           timeout = setTimeout(() => {
             slider.next()
-          }, 3000)
+          }, 5000)
         }
         slider.on('created', () => {
           slider.container.addEventListener('mouseover', () => {
@@ -56,12 +68,54 @@ export function Slider() {
           ref={sliderRef}
           className="keen-slider"
         >
-          <div className="keen-slider__slide number-slide1">1</div>
-          <div className="keen-slider__slide number-slide2">2</div>
-          <div className="keen-slider__slide number-slide3">3</div>
-          <div className="keen-slider__slide number-slide4">4</div>
-          <div className="keen-slider__slide number-slide5">5</div>
-          <div className="keen-slider__slide number-slide6">6</div>
+          <div className="keen-slider__slide number-slide1">
+            <img
+              srcSet={`${Slide1} 640w, ${Slide1hd} 1832w`}
+              sizes="(max-width: 1920px) 640px, 1832px"
+              src={Slide1}
+              alt=""
+            />
+          </div>
+          <div className="keen-slider__slide number-slide2">
+            <img
+              srcSet={`${Slide2} 640w, ${Slide2hd} 1920w`}
+              sizes="(max-width: 1920px) 640px, 1920px"
+              src={Slide2}
+              alt=""
+            />
+          </div>
+          <div className="keen-slider__slide number-slide3">
+            <img
+              srcSet={`${Slide3} 640w, ${Slide3hd} 1920w`}
+              sizes="(max-width: 1920px) 640px, 1920px"
+              src={Slide3}
+              alt=""
+            />
+          </div>
+          <div className="keen-slider__slide number-slide4">
+            <img
+              srcSet={`${Slide4} 640w, ${Slide4hd} 1920w`}
+              sizes="(max-width: 1920px) 640px, 1920px"
+              src={Slide4}
+              alt=""
+            />
+          </div>
+          <div className="keen-slider__slide number-slide5">
+            <img
+              srcSet={`${Slide5} 640w, ${Slide5hd} 1920w`}
+              sizes="(max-width: 1920px) 640px, 1920px"
+              src={Slide5}
+              alt=""
+            />
+          </div>
+          <div className="keen-slider__slide number-slide6">
+            <img
+              srcSet={`${Slide6} 640w, ${Slide6hd} 1920w`}
+              sizes="(max-width: 1920px) 640px, 1920px"
+              src={Slide6}
+              alt=""
+            />
+          </div>
         </div>
         {loaded && instanceRef.current && (
           <>
