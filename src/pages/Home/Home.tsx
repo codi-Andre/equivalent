@@ -61,6 +61,7 @@ function Home() {
             />
 
             <Selector
+              placeholder={locale.chooseQuantity}
               value={quantity}
               setValue={setQuantity}
               title={locale.quantitySelector}

@@ -23,6 +23,10 @@ export const Selector = styled.input`
     color: ${theme.colors.secondary};
     background-color: ${theme.colors.grayLight};
 
+    &::placeholder {
+      opacity: 1;
+    }
+
     :focus {
       box-shadow: 0 0 0 2px ${theme.colors.secondary};
     }
