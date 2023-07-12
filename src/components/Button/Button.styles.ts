@@ -22,13 +22,13 @@ export const Button = styled.button<StyledButtonProps>`
     }
 
     &:disabled {
-      background-color: ${theme.colors.grayDark};
+      background-color: #e9e9ed;
     }
 
     &:disabled:hover,
     &:disabled:active {
       cursor: not-allowed;
-      background-color: ${theme.colors.grayDark};
+      background-color: #e9e9ed;
       color: ${theme.colors.secondary};
     }
 

@@ -40,18 +40,21 @@ export default function FoodProvider({ children }: FoodContextProps) {
 
   function calculateEquivalent(userInput: UserInput) {
     // encontra o valor calórico de uma grama
-    const baseFoodCaloriesPerGram = Math.round(
-      userInput.baseFood.calories / 100,
+    const baseFoodCaloriesPerGram = Number(
+      (userInput.baseFood.calories / userInput.baseFood.quantity).toFixed(1),
     )
-    const substituintCaloriesPerGram = Math.round(
-      userInput.substituint.calories / 100,
+    const substituintCaloriesPerGram = Number(
+      (userInput.substituint.calories / userInput.substituint.quantity).toFixed(
+        1,
+      ),
     )
+
     // multiplica o alimento base pela quantidade escolhida pelo usuário
-    const totalCalories = Math.round(
-      baseFoodCaloriesPerGram * userInput.quantity,
-    )
+    const totalCalories = baseFoodCaloriesPerGram * userInput.quantity
     // divide o valor total de calorias pelo alimento substituinte
-    const result = Math.round(totalCalories / substituintCaloriesPerGram)
+    const result = Number(
+      (totalCalories / substituintCaloriesPerGram).toFixed(1),
+    )
 
     return result
   }

@@ -35,7 +35,7 @@ export function DisplayInput({ id, displayRef, displayValue }: DisplayProps) {
         }
       }}
     >
-      {displayValue || locale.ChooseOption}
+      {displayValue || locale.chooseOption}
       <S.Button
         type="button"
         aria-label="food"
