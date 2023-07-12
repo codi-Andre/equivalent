@@ -9,7 +9,8 @@
   "quantitySelector": "Quantidade (g)",
   "calcButton": "Calcular",
   "clearButton": "Limpar",
-  "ChooseOption": "Escolha uma opção",
+  "chooseOption": "Escolha uma opção",
+  "chooseQuantity": "Escolha a quantidade",
   "filteredListStatus": "Nada encontrado.",
   "listTitle": "comidas"
 }

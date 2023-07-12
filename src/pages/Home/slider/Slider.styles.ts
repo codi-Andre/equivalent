@@ -3,16 +3,15 @@ import styled from 'styled-components'
 export const SliderContainer = styled.div`
   flex: 1;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   [class^='number-slide'],
   [class*=' number-slide'] {
-    background: grey;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
-    color: #fff;
-    font-weight: 500;
     height: 100vh;
   }
 
@@ -87,7 +86,6 @@ export const SliderContainer = styled.div`
     bottom: 0.25rem;
     left: 0.25rem;
     right: 0.25rem;
-    /* padding: 2rem, */
   }
 
   .dot {
