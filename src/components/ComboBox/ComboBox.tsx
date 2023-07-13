@@ -74,9 +74,11 @@ export function ComboBox({
       searchInputRef.current?.focus()
     } else if (popupExpanded) {
       searchInputRef.current?.focus()
-      scrollListToId(0, true)
-      setKeyboardCursor(0)
-      setActiveListItem(String(filteredList[0].id))
+      if (list[0] !== undefined) {
+        scrollListToId(0, true)
+        setKeyboardCursor(0)
+        setActiveListItem(String(filteredList[0].id))
+      }
     } else {
       setQuery('')
     }
@@ -139,6 +141,7 @@ export function ComboBox({
         e.preventDefault()
         selectedValue(filteredList[keyboardCursor])
         setPopupExpanded(false)
+        displayRef.current?.focus()
         break
       case 'ArrowUp':
         if (keyboardCursor > 0) {

@@ -68,54 +68,48 @@ export function Slider() {
           ref={sliderRef}
           className="keen-slider"
         >
-          <div className="keen-slider__slide number-slide1">
-            <img
-              srcSet={`${Slide1} 640w, ${Slide1hd} 1832w`}
-              sizes="(max-width: 1920px) 640px, 1832px"
-              src={Slide1}
-              alt=""
-            />
-          </div>
-          <div className="keen-slider__slide number-slide2">
-            <img
-              srcSet={`${Slide2} 640w, ${Slide2hd} 1920w`}
-              sizes="(max-width: 1920px) 640px, 1920px"
-              src={Slide2}
-              alt=""
-            />
-          </div>
-          <div className="keen-slider__slide number-slide3">
-            <img
-              srcSet={`${Slide3} 640w, ${Slide3hd} 1920w`}
-              sizes="(max-width: 1920px) 640px, 1920px"
-              src={Slide3}
-              alt=""
-            />
-          </div>
-          <div className="keen-slider__slide number-slide4">
-            <img
-              srcSet={`${Slide4} 640w, ${Slide4hd} 1920w`}
-              sizes="(max-width: 1920px) 640px, 1920px"
-              src={Slide4}
-              alt=""
-            />
-          </div>
-          <div className="keen-slider__slide number-slide5">
-            <img
-              srcSet={`${Slide5} 640w, ${Slide5hd} 1920w`}
-              sizes="(max-width: 1920px) 640px, 1920px"
-              src={Slide5}
-              alt=""
-            />
-          </div>
-          <div className="keen-slider__slide number-slide6">
-            <img
-              srcSet={`${Slide6} 640w, ${Slide6hd} 1920w`}
-              sizes="(max-width: 1920px) 640px, 1920px"
-              src={Slide6}
-              alt=""
-            />
-          </div>
+          <img
+            className="keen-slider__slide number-slide1"
+            srcSet={`${Slide1} 640w, ${Slide1hd} 1832w`}
+            sizes="(max-width: 1920px) 640px, 1832px"
+            src={Slide1}
+            alt=""
+          />
+          <img
+            className="keen-slider__slide number-slide2"
+            srcSet={`${Slide2} 640w, ${Slide2hd} 1920w`}
+            sizes="(max-width: 1920px) 640px, 1920px"
+            src={Slide2}
+            alt=""
+          />
+          <img
+            className="keen-slider__slide number-slide3"
+            srcSet={`${Slide3} 640w, ${Slide3hd} 1920w`}
+            sizes="(max-width: 1920px) 640px, 1920px"
+            src={Slide3}
+            alt=""
+          />
+          <img
+            className="keen-slider__slide number-slide4"
+            srcSet={`${Slide4} 640w, ${Slide4hd} 1920w`}
+            sizes="(max-width: 1920px) 640px, 1920px"
+            src={Slide4}
+            alt=""
+          />
+          <img
+            className="keen-slider__slide number-slide5"
+            srcSet={`${Slide5} 640w, ${Slide5hd} 1920w`}
+            sizes="(max-width: 1920px) 640px, 1920px"
+            src={Slide5}
+            alt=""
+          />
+          <img
+            className="keen-slider__slide number-slide6"
+            srcSet={`${Slide6} 640w, ${Slide6hd} 1920w`}
+            sizes="(max-width: 1920px) 640px, 1920px"
+            src={Slide6}
+            alt=""
+          />
         </div>
         {loaded && instanceRef.current && (
           <>
