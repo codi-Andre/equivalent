@@ -13,6 +13,7 @@ import { Option } from './Option/Option'
 import * as S from './ComboBox.styles'
 import { DisplayInput } from './Display/Display'
 import locale from '@/assets/locale.json'
+import { NewItemModal } from './NewItemModal/NewItemModal'
 
 interface ComboBoxContextData {
   activeListItem: string
@@ -186,12 +187,15 @@ export function ComboBox({
           displayValue={displayValue?.name}
         />
         <S.Popup isExpanded={popupExpanded}>
-          <SearchInput
-            refNode={searchInputRef}
-            id={title}
-            query={query}
-            setQuery={setQuery}
-          />
+          <S.Row>
+            <SearchInput
+              refNode={searchInputRef}
+              id={title}
+              query={query}
+              setQuery={setQuery}
+            />
+            <NewItemModal title={title} />
+          </S.Row>
           <ListBox id={title}>
             {filteredList.map((food, i) => {
               return (
