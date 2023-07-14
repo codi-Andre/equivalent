@@ -35,6 +35,10 @@ export const Popup = styled.div<{ isExpanded: boolean }>`
   `}
 `
 
+export const Row = styled.div`
+  display: flex;
+`
+
 export const FilterStatus = styled.div`
   padding: 0.2rem;
   &.visually-hidden {

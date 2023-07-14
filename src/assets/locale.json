@@ -9,8 +9,17 @@
   "quantitySelector": "Quantidade (g)",
   "calcButton": "Calcular",
   "clearButton": "Limpar",
+  "submitButton": "Salvar",
   "chooseOption": "Escolha uma opção",
   "chooseQuantity": "Escolha a quantidade",
   "filteredListStatus": "Nada encontrado.",
-  "listTitle": "comidas"
+  "listTitle": "comidas",
+  "addNewFoodTitle": "Adicionar novo alimento",
+  "addNewFoodName": "Nome:",
+  "addNewFoodQuantity": "Quantidade:",
+  "addNewFoodCalories": "Calorias:",
+  "addNewFoodCarbohydrates": "Carboidratos:",
+  "addNewFoodFats": "Gorduras:",
+  "addNewFoodProteins": "Proteínas:",
+  "addNewFoodCategory": "Categoria:"
 }

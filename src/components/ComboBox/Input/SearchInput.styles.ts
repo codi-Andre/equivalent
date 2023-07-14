@@ -5,6 +5,7 @@ export const SearchInput = styled.input`
   font-size: small;
   margin: 2px;
   border: none;
+  flex: 1;
 
   ${({ theme }) => css`
     color: ${theme.colors.secondary};
