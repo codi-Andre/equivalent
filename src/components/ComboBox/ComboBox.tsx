@@ -133,7 +133,6 @@ export function ComboBox({
 
   function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
     switch (e.code) {
-      case 'Tab':
       case 'Escape':
         setPopupExpanded(false)
         displayRef.current?.focus()
@@ -194,7 +193,10 @@ export function ComboBox({
               query={query}
               setQuery={setQuery}
             />
-            <NewItemModal title={title} />
+            <NewItemModal
+              title={title}
+              name={query}
+            />
           </S.Row>
           <ListBox id={title}>
             {filteredList.map((food, i) => {
