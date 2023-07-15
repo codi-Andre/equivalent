@@ -1,7 +1,13 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import styled from 'styled-components'
 
-export const Trigger = styled.button``
+export const Trigger = styled.button`
+  margin: 2px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${props => props.theme.colors.secondary};
+  }
+`
 
 export const Overlay = styled(Dialog.Overlay)`
   position: fixed;
