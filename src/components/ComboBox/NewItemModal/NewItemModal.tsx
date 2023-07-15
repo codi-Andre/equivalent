@@ -3,29 +3,61 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as S from './NewItemModal.styles'
 import locale from '@/assets/locale.json'
 import { useComboBox } from '../ComboBox'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import { Food } from '@/entities/food'
 import { addFoodToList } from '@/api'
+import { FormTemplate } from './FormTemplate/FormTemplate'
+import { LoadingTemplate } from './LoadingTemplate/LoadingTemplate'
+import { useFood } from '@/contexts'
 
 interface NewItemModalProps {
-  title: string
+  id: string
   name: string
+  newSelectedValue: (food: Food) => void
 }
 
-export function NewItemModal({ title, name }: NewItemModalProps) {
+export function NewItemModal({
+  id,
+  name,
+  newSelectedValue,
+}: NewItemModalProps) {
+  const { updateList } = useFood()
+
   const { setPopupExpanded } = useComboBox()
+  const [requestStatus, setRequestStatus] = useState<number | undefined>()
+  const [loadStatus, setLoadStatus] = useState<'start' | 'loading' | 'ready'>(
+    'start',
+  )
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault()
-
+    setLoadStatus('loading')
     const formData = new FormData(event.target as HTMLFormElement)
     const newItem = Object.fromEntries(formData.entries())
     const newFood = Object(newItem) as Food
 
-    const response = addFoodToList(newFood)
+    const response = await addFoodToList(newFood)
+    if (response !== undefined && response < 300) newSelectedValue(newFood)
+    setRequestStatus(response)
+    setLoadStatus('ready')
   }
+
+  function handleLoadingTemplate() {
+    setLoadStatus('start')
+    setRequestStatus(undefined)
+  }
+
   return (
-    <Dialog.Root modal>
+    <Dialog.Root
+      modal
+      onOpenChange={open => {
+        if (open === false) {
+          setLoadStatus('start')
+          setRequestStatus(undefined)
+          updateList()
+        }
+      }}
+    >
       <Dialog.Trigger asChild>
         <S.Trigger
           title={locale.addNewFoodTitle}
@@ -44,83 +76,19 @@ export function NewItemModal({ title, name }: NewItemModalProps) {
           </S.CloseButton>
 
           <Dialog.Title>{locale.addNewFoodTitle}</Dialog.Title>
-
-          <form onSubmit={handleSubmit}>
-            <label htmlFor={`addNewFoodName-${title}`}>
-              {locale.addNewFoodName}
-            </label>
-            <input
-              id={`addNewFoodName-${title}`}
-              type="text"
-              name={`name`}
-              defaultValue={name}
-              required
+          {loadStatus === 'start' ? (
+            <FormTemplate
+              id={id}
+              foodName={name}
+              handleSubmit={handleSubmit}
             />
-
-            <label htmlFor={`addNewFoodQuantity-${title}`}>
-              {locale.addNewFoodQuantity}
-            </label>
-            <input
-              id={`addNewFoodQuantity-${title}`}
-              type="number"
-              name={`quantity`}
-              required
+          ) : (
+            <LoadingTemplate
+              status={loadStatus}
+              success={requestStatus}
+              onClick={handleLoadingTemplate}
             />
-
-            <label htmlFor={`addNewFoodCalories-${title}`}>
-              {locale.addNewFoodCalories}
-            </label>
-            <input
-              id={`addNewFoodCalories-${title}`}
-              type="number"
-              name={`calories`}
-              required
-            />
-
-            <label htmlFor={`addNewFoodCarbohydrates-${title}`}>
-              {locale.addNewFoodCarbohydrates}
-            </label>
-            <input
-              id={`addNewFoodCarbohydrates-${title}`}
-              type="number"
-              name={`carbohydrates`}
-              required
-            />
-
-            <label htmlFor={`addNewFoodFats-${title}`}>
-              {locale.addNewFoodFats}
-            </label>
-            <input
-              id={`addNewFoodFats-${title}`}
-              type="number"
-              name={`fats`}
-              required
-            />
-
-            <label htmlFor={`addNewFoodProteins-${title}`}>
-              {locale.addNewFoodProteins}
-            </label>
-            <input
-              id={`addNewFoodProteins-${title}`}
-              type="number"
-              name={`proteins`}
-              required
-            />
-
-            <label htmlFor={`addNewFoodCategory-${title}`}>
-              {locale.addNewFoodCategory}
-            </label>
-            <input
-              id={`addNewFoodCategory-${title}`}
-              type="text"
-              name={`category`}
-            />
-
-            <div>
-              <button type="submit">{locale.submitButton}</button>
-              <button type="reset">{locale.clearButton}</button>
-            </div>
-          </form>
+          )}
         </S.Content>
       </Dialog.Portal>
     </Dialog.Root>
