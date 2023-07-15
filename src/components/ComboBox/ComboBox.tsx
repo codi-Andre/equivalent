@@ -194,8 +194,9 @@ export function ComboBox({
               setQuery={setQuery}
             />
             <NewItemModal
-              title={title}
+              id={title}
               name={query}
+              newSelectedValue={selectedValue}
             />
           </S.Row>
           <ListBox id={title}>
