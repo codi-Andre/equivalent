@@ -1,2 +1,2 @@
 export { default as getFoodList } from './foodList/getFoodList'
-export { default as addFoodToList } from './foodList/addFoodToList'
+export { default as postFood } from './foodList/postFood'

@@ -5,7 +5,6 @@ import locale from '@/assets/locale.json'
 import { useComboBox } from '../ComboBox'
 import { FormEvent, useState } from 'react'
 import { Food } from '@/entities/food'
-import { addFoodToList } from '@/api'
 import { FormTemplate } from './FormTemplate/FormTemplate'
 import { LoadingTemplate } from './LoadingTemplate/LoadingTemplate'
 import { useFood } from '@/contexts'
@@ -21,7 +20,7 @@ export function NewItemModal({
   name,
   newSelectedValue,
 }: NewItemModalProps) {
-  const { updateList } = useFood()
+  const { addFood } = useFood()
 
   const { setPopupExpanded } = useComboBox()
   const [requestStatus, setRequestStatus] = useState<number | undefined>()
@@ -36,10 +35,12 @@ export function NewItemModal({
     const newItem = Object.fromEntries(formData.entries())
     const newFood = Object(newItem) as Food
 
-    const response = await addFoodToList(newFood)
-    if (response !== undefined && response < 300) newSelectedValue(newFood)
-    setRequestStatus(response)
-    setLoadStatus('ready')
+    const response = await addFood(newFood)
+    if (response !== undefined && response.status < 300) {
+      newSelectedValue(response.data)
+      setRequestStatus(response?.status)
+      setLoadStatus('ready')
+    }
   }
 
   function handleLoadingTemplate() {
@@ -51,11 +52,7 @@ export function NewItemModal({
     <Dialog.Root
       modal
       onOpenChange={open => {
-        if (open === false) {
-          setLoadStatus('start')
-          setRequestStatus(undefined)
-          updateList()
-        }
+        if (open === false) handleLoadingTemplate()
       }}
     >
       <Dialog.Trigger asChild>

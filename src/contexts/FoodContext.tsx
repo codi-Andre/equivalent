@@ -1,4 +1,4 @@
-import { getFoodList } from '@/api'
+import { getFoodList, postFood } from '@/api'
 import { Food } from '@/entities/food'
 import {
   ReactNode,
@@ -8,11 +8,13 @@ import {
   useState,
 } from 'react'
 import { UserInput } from './FoodContext.intefaces'
+import { AxiosResponse } from 'axios'
 
 interface ContextData {
   foodList: Food[]
   updateList: () => void
   calculateEquivalent: (userInput: UserInput) => number
+  addFood: (food: Food) => Promise<AxiosResponse | undefined>
 }
 
 interface FoodContextProps {
@@ -36,6 +38,24 @@ export default function FoodProvider({ children }: FoodContextProps) {
     } else {
       setFoodList([])
     }
+  }
+
+  async function addFood(food: Food): Promise<AxiosResponse | undefined> {
+    const response = await postFood(food)
+
+    if (response !== undefined && response.status < 300) {
+      setFoodList(foodList =>
+        [...foodList, response.data].sort((a, b) => {
+          if (a.name < b.name) return -1
+
+          if (a.name > b.name) return 1
+
+          return 0
+        }),
+      )
+    }
+
+    return response
   }
 
   function calculateEquivalent(userInput: UserInput) {
@@ -65,6 +85,7 @@ export default function FoodProvider({ children }: FoodContextProps) {
         foodList,
         updateList,
         calculateEquivalent,
+        addFood,
       }}
     >
       {children}
