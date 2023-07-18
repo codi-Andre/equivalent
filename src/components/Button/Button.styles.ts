@@ -16,6 +16,7 @@ export const Button = styled.button<StyledButtonProps>`
   ${({ theme, isNegative }) => css`
     color: ${theme.colors.secondary};
 
+    &:focus,
     &:hover {
       border: 2px solid
         ${isNegative ? theme.colors.danger : theme.colors.accent};

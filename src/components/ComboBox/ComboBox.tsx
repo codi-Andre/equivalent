@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { SearchInput } from './Input/SearchInput'
+import { SearchInput } from './SearchInput/SearchInput'
 import { ListBox } from './ListBox/ListBox'
 import { Option } from './Option/Option'
 import * as S from './ComboBox.styles'
@@ -132,6 +132,10 @@ export function ComboBox({
   }
 
   function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.shiftKey && e.code === 'Tab') {
+      setPopupExpanded(false)
+      displayRef.current?.focus()
+    }
     switch (e.code) {
       case 'Escape':
         setPopupExpanded(false)
@@ -196,6 +200,7 @@ export function ComboBox({
             <NewItemModal
               id={title}
               name={query}
+              displayRef={displayRef}
               newSelectedValue={selectedValue}
             />
           </S.Row>
@@ -203,7 +208,7 @@ export function ComboBox({
             {filteredList.map((food, i) => {
               return (
                 <Option
-                  selected={food.name === displayValue?.name}
+                  selected={food.id === displayValue?.id}
                   setSelected={selectedValue}
                   active={i === keyboardCursor}
                   key={food.id}
