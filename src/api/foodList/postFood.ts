@@ -1,13 +1,14 @@
 import { Food } from '@/entities/food'
 import api from '../api'
+import { AxiosResponse } from 'axios'
 
-async function addFoodToList(item: Food): Promise<number | undefined> {
+async function postFood(item: Food): Promise<AxiosResponse | undefined> {
   try {
     const response = await api.post('food', item)
-    return response.status
+    return response
   } catch (error) {
     console.log(error)
   }
 }
 
-export default addFoodToList
+export default postFood
