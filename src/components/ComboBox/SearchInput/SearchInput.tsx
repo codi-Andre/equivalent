@@ -13,6 +13,7 @@ export function SearchInput({ refNode, id, query, setQuery }: InputProps) {
   const { activeListItem, popupExpanded, handleKeyPress } = useComboBox()
   return (
     <S.SearchInput
+      tabIndex={popupExpanded ? 0 : -1}
       id={id}
       type="text"
       role="combobox"

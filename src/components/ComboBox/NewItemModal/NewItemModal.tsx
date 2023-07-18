@@ -3,34 +3,31 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as S from './NewItemModal.styles'
 import locale from '@/assets/locale.json'
 import { useComboBox } from '../ComboBox'
-import { FormEvent, useState } from 'react'
+import { FormEvent, RefObject, useState } from 'react'
 import { Food } from '@/entities/food'
-import { FormTemplate } from './FormTemplate/FormTemplate'
-import { LoadingTemplate } from './LoadingTemplate/LoadingTemplate'
 import { useFood } from '@/contexts'
 
 interface NewItemModalProps {
   id: string
   name: string
+  displayRef: RefObject<HTMLDivElement | null>
   newSelectedValue: (food: Food) => void
 }
 
 export function NewItemModal({
   id,
   name,
+  displayRef,
   newSelectedValue,
 }: NewItemModalProps) {
   const { addFood } = useFood()
-
   const { setPopupExpanded } = useComboBox()
-  const [requestStatus, setRequestStatus] = useState<number | undefined>()
-  const [loadStatus, setLoadStatus] = useState<'start' | 'loading' | 'ready'>(
-    'start',
-  )
+
+  const [submitting, setSubmitting] = useState<boolean>(false)
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    setLoadStatus('loading')
+    setSubmitting(true)
     const formData = new FormData(event.target as HTMLFormElement)
     const newItem = Object.fromEntries(formData.entries())
     const newFood = Object(newItem) as Food
@@ -38,28 +35,25 @@ export function NewItemModal({
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
       newSelectedValue(response.data)
-      setRequestStatus(response?.status)
-      setLoadStatus('ready')
     }
-  }
-
-  function handleLoadingTemplate() {
-    setLoadStatus('start')
-    setRequestStatus(undefined)
+    setSubmitting(false)
   }
 
   return (
     <Dialog.Root
       modal
       onOpenChange={open => {
-        if (open === false) handleLoadingTemplate()
+        if (open === false) {
+          setSubmitting(false)
+          displayRef.current?.focus()
+        }
       }}
     >
       <Dialog.Trigger asChild>
         <S.Trigger
           title={locale.addNewFoodTitle}
           onKeyDown={e => {
-            if (e.code === 'Tab') setPopupExpanded(false)
+            if (!e.shiftKey && e.code === 'Tab') setPopupExpanded(false)
           }}
         >
           <Icon name="add" />
@@ -73,19 +67,101 @@ export function NewItemModal({
           </S.CloseButton>
 
           <Dialog.Title>{locale.addNewFoodTitle}</Dialog.Title>
-          {loadStatus === 'start' ? (
-            <FormTemplate
-              id={id}
-              foodName={name}
-              handleSubmit={handleSubmit}
+          <S.FormContainer onSubmit={handleSubmit}>
+            <label htmlFor={`addNewFoodName-${id}`}>
+              {locale.addNewFoodName}
+            </label>
+            <input
+              autoFocus
+              id={`addNewFoodName-${id}`}
+              type="text"
+              name={`name`}
+              defaultValue={name}
+              required
+              disabled={submitting}
             />
-          ) : (
-            <LoadingTemplate
-              status={loadStatus}
-              success={requestStatus}
-              onClick={handleLoadingTemplate}
+
+            <label htmlFor={`addNewFoodQuantity-${id}`}>
+              {locale.addNewFoodQuantity}
+            </label>
+            <input
+              id={`addNewFoodQuantity-${id}`}
+              type="number"
+              name={`quantity`}
+              required
+              disabled={submitting}
             />
-          )}
+
+            <label htmlFor={`addNewFoodCalories-${id}`}>
+              {locale.addNewFoodCalories}
+            </label>
+            <input
+              id={`addNewFoodCalories-${id}`}
+              type="number"
+              name={`calories`}
+              required
+              disabled={submitting}
+            />
+
+            <label htmlFor={`addNewFoodCarbohydrates-${id}`}>
+              {locale.addNewFoodCarbohydrates}
+            </label>
+            <input
+              id={`addNewFoodCarbohydrates-${id}`}
+              type="number"
+              name={`carbohydrates`}
+              required
+              disabled={submitting}
+            />
+
+            <label htmlFor={`addNewFoodFats-${id}`}>
+              {locale.addNewFoodFats}
+            </label>
+            <input
+              id={`addNewFoodFats-${id}`}
+              type="number"
+              name={`fats`}
+              required
+              disabled={submitting}
+            />
+
+            <label htmlFor={`addNewFoodProteins-${id}`}>
+              {locale.addNewFoodProteins}
+            </label>
+            <input
+              id={`addNewFoodProteins-${id}`}
+              type="number"
+              name={`proteins`}
+              required
+              disabled={submitting}
+            />
+
+            <label htmlFor={`addNewFoodCategory-${id}`}>
+              {locale.addNewFoodCategory}
+            </label>
+            <input
+              id={`addNewFoodCategory-${id}`}
+              type="text"
+              name={`category`}
+              disabled={submitting}
+            />
+
+            <div>
+              <S.FormButton
+                disabled={submitting}
+                type="submit"
+              >
+                {locale.submitButton}
+              </S.FormButton>
+              <S.FormButton
+                isNegative
+                disabled={submitting}
+                type="reset"
+              >
+                {locale.clearButton}
+              </S.FormButton>
+            </div>
+          </S.FormContainer>
         </S.Content>
       </Dialog.Portal>
     </Dialog.Root>
