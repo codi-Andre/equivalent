@@ -2,7 +2,7 @@ import { Food } from '@/entities/food'
 import api from '../api'
 import { AxiosResponse } from 'axios'
 
-async function postFood(item: Food): Promise<AxiosResponse | undefined> {
+async function createFood(item: Food): Promise<AxiosResponse | undefined> {
   try {
     const response = await api.post('food', item)
     return response
@@ -11,4 +11,4 @@ async function postFood(item: Food): Promise<AxiosResponse | undefined> {
   }
 }
 
-export default postFood
+export default createFood

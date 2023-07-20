@@ -1,4 +1,4 @@
-import { getFoodList, postFood } from '@/api'
+import { getFoodList, createFood } from '@/api'
 import { Food } from '@/entities/food'
 import {
   ReactNode,
@@ -41,7 +41,7 @@ export default function FoodProvider({ children }: FoodContextProps) {
   }
 
   async function addFood(food: Food): Promise<AxiosResponse | undefined> {
-    const response = await postFood(food)
+    const response = await createFood(food)
 
     if (response !== undefined && response.status < 300) {
       setFoodList(foodList =>
