@@ -5,7 +5,7 @@ import locale from '@/assets/locale.json'
 import { useComboBox } from '../ComboBox'
 import { FormEvent, RefObject, useState } from 'react'
 import { Food } from '@/entities/food'
-import { useFood } from '@/contexts'
+import { useFood, useToast } from '@/contexts'
 
 interface NewItemModalProps {
   id: string
@@ -22,6 +22,7 @@ export function NewItemModal({
 }: NewItemModalProps) {
   const { addFood } = useFood()
   const { setPopupExpanded } = useComboBox()
+  const { newToast } = useToast()
 
   const [submitting, setSubmitting] = useState<boolean>(false)
 
@@ -35,7 +36,11 @@ export function NewItemModal({
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
       newSelectedValue(response.data)
+      newToast(201, 'success')
+    } else {
+      newToast(500, 'failure')
     }
+
     setSubmitting(false)
   }
 

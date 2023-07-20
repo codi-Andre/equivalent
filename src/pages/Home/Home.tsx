@@ -1,4 +1,4 @@
-import { Navigator, Selector, Button } from '@components'
+import { Navigator, Selector, Button, ToastList } from '@components'
 import locale from '@/assets/locale.json'
 import {
   Container,
@@ -46,6 +46,7 @@ function Home() {
 
   return (
     <Container>
+      <ToastList />
       <ContentWrapper>
         <Navigator />
         <Content>

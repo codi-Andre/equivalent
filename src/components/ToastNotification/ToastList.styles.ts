@@ -11,4 +11,6 @@ export const ToastListContainer = styled.div`
   max-width: 400px;
   max-height: 100vh;
   overflow: hidden auto;
+
+  z-index: 3;
 `

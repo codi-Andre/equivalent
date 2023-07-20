@@ -2,12 +2,13 @@ import { Icon } from '@components'
 import * as S from './Toast.styles'
 
 interface ToastProps {
+  id: string
   type: number
   message: string
-  onClose: () => void
+  onClose: (id: string) => void
 }
 
-export function Toast({ message, type, onClose }: ToastProps) {
+export function Toast({ id, message, type, onClose }: ToastProps) {
   return (
     <S.ToastContainer role="alert">
       <S.Message>
@@ -16,7 +17,7 @@ export function Toast({ message, type, onClose }: ToastProps) {
       </S.Message>
       <S.ToastCloseBtn
         title="close"
-        onClick={() => onClose()}
+        onClick={() => onClose(id)}
       >
         <Icon name="close" />
       </S.ToastCloseBtn>
