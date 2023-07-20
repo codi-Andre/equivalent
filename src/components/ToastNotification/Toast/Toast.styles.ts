@@ -22,7 +22,7 @@ export const ToastContainer = styled.div`
   & + & {
     margin-top: 0.5rem;
   }
-  transform: 250ms;
+  transition: transform 250ms;
   animation: ${slideAnimation} 250ms;
 `
 
