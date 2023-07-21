@@ -9,4 +9,7 @@ export {
   ToastContext,
   useToast,
 } from './ToastContext/ToastContext'
-export type { Toast } from './ToastContext/ToastContext.interface'
+export type {
+  ToastData,
+  ToastStatus,
+} from './ToastContext/ToastContext.interface'

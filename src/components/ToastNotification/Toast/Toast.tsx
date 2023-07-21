@@ -1,21 +1,26 @@
 import { Icon } from '@components'
 import * as S from './Toast.styles'
+import { ToastData } from '@/contexts'
 
-interface ToastProps {
-  id: string
-  type: number
-  message: string
+interface ToastProps extends ToastData {
   onClose: (id: string) => void
 }
 
 export function Toast({ id, message, type, onClose }: ToastProps) {
+  const iconMap = {
+    success: <Icon name="check_circle" />,
+    failure: <Icon name="cancel" />,
+    warning: <Icon name="info" />,
+    info: <Icon name="help" />,
+  }
+
   return (
     <S.ToastContainer
       type={type}
       role="alert"
     >
       <S.Message>
-        <Icon name={type < 300 ? 'check_circle' : 'cancel'} />
+        {iconMap[type] ?? null}
         <p>{message}</p>
       </S.Message>
       <S.ToastCloseBtn

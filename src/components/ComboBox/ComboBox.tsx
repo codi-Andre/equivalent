@@ -141,6 +141,7 @@ export function ComboBox({
         setPopupExpanded(false)
         displayRef.current?.focus()
         break
+      case 'NumpadEnter':
       case 'Enter':
         e.preventDefault()
         selectedValue(filteredList[keyboardCursor])

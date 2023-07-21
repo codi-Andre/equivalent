@@ -26,6 +26,7 @@ export function DisplayInput({ id, displayRef, displayValue }: DisplayProps) {
       aria-labelledby={`combo-box-label-${id}`}
       onKeyDown={e => {
         if (
+          e.code === 'NumpadEnter' ||
           e.code === 'Enter' ||
           e.code === 'Space' ||
           e.code === 'ArrowDown'
