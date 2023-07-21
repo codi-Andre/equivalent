@@ -10,7 +10,10 @@ interface ToastProps {
 
 export function Toast({ id, message, type, onClose }: ToastProps) {
   return (
-    <S.ToastContainer role="alert">
+    <S.ToastContainer
+      type={type}
+      role="alert"
+    >
       <S.Message>
         <Icon name={type < 300 ? 'check_circle' : 'cancel'} />
         <p>{message}</p>
