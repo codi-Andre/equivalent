@@ -1,10 +1,10 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
-import { Toast } from './ToastContext.interface'
+import { ToastData, ToastStatus } from './ToastContext.interface'
 
 interface ToastContextData {
-  toasts: Toast[]
+  toasts: ToastData[]
   removeToast: (id: string) => void
-  newToast: (type: number, message: string) => void
+  newToast: (type: ToastStatus, message: string) => void
 }
 
 interface ToastProviderProps {
@@ -14,13 +14,13 @@ interface ToastProviderProps {
 export const ToastContext = createContext({} as ToastContextData)
 
 export default function ToastProvider({ children }: ToastProviderProps) {
-  const [toasts, setToasts] = useState<Toast[]>([])
+  const [toasts, setToasts] = useState<ToastData[]>([])
 
   function removeToast(id: string) {
     setToasts(toasts => toasts.filter(toast => toast.id !== id))
   }
 
-  function newToast(type: number, message: string) {
+  function newToast(type: ToastStatus, message: string) {
     const toast = {
       id: new Date().toUTCString(),
       type,

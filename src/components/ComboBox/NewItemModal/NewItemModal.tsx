@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as S from './NewItemModal.styles'
 import locale from '@/assets/locale.json'
 import { useComboBox } from '../ComboBox'
-import { FormEvent, RefObject, useState } from 'react'
+import { FormEvent, RefObject, useEffect, useState } from 'react'
 import { Food } from '@/entities/food'
 import { useFood, useToast } from '@/contexts'
 
@@ -25,6 +25,13 @@ export function NewItemModal({
   const { newToast } = useToast()
 
   const [submitting, setSubmitting] = useState<boolean>(false)
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (open === false) {
+      setSubmitting(false)
+    }
+  }, [open])
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
@@ -36,9 +43,10 @@ export function NewItemModal({
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
       newSelectedValue(response.data)
-      newToast(201, 'success')
+      newToast('success', locale.addFoodNotificationSuccess)
+      setOpen(false)
     } else {
-      newToast(500, 'failure')
+      newToast('failure', locale.addFoodNotificationFailure)
     }
 
     setSubmitting(false)
@@ -47,12 +55,8 @@ export function NewItemModal({
   return (
     <Dialog.Root
       modal
-      onOpenChange={open => {
-        if (open === false) {
-          setSubmitting(false)
-          displayRef.current?.focus()
-        }
-      }}
+      open={open}
+      onOpenChange={setOpen}
     >
       <Dialog.Trigger asChild>
         <S.Trigger
