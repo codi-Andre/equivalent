@@ -153,10 +153,12 @@ export function NewItemModal({
 
             <div>
               <S.FormButton
+                submitting={submitting}
                 disabled={submitting}
                 type="submit"
               >
                 {locale.submitButton}
+                <span></span>
               </S.FormButton>
               <S.FormButton
                 isNegative

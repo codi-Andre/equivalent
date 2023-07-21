@@ -1,6 +1,15 @@
 import { Button } from '@/components/Button/Button.styles'
 import * as Dialog from '@radix-ui/react-dialog'
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
+
+const spinnerAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
 
 export const Trigger = styled.button`
   border: none;
@@ -66,7 +75,7 @@ export const FormContainer = styled.form`
   }
 `
 
-export const FormButton = styled(Button)`
+export const FormButton = styled(Button)<{ submitting?: boolean }>`
   border: 0;
   font-weight: bold;
   border-radius: 6px;
@@ -76,6 +85,29 @@ export const FormButton = styled(Button)`
 
   height: inherit;
   width: inherit;
+  position: relative;
+
+  ${({ theme, submitting }) => css`
+    color: ${submitting ? 'transparent' : 'inherit'};
+
+    &:hover:disabled {
+      color: ${submitting ? 'transparent' : 'inherit'};
+    }
+
+    span {
+      display: ${submitting ? 'inline-block' : 'none'};
+      animation: 1.5s linear infinite ${spinnerAnimation};
+      border: solid 5px ${theme.colors.light};
+      border-bottom-color: ${theme.colors.accent};
+      border-radius: 50%;
+      content: '';
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top: 5%;
+      left: 35%;
+    }
+  `}
 `
 
 export const CloseButton = styled(Dialog.Close)`
