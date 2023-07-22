@@ -29,6 +29,9 @@ export function Toast({ id, message, type, onClose }: ToastProps) {
       >
         <Icon name="close" />
       </S.ToastCloseBtn>
+      <S.ProgressBar type={type}>
+        <div></div>
+      </S.ProgressBar>
     </S.ToastContainer>
   )
 }
