@@ -71,11 +71,9 @@ export function ComboBox({
   }, [hovered])
 
   useEffect(() => {
-    if (popupExpanded && displayValue) {
+    if (popupExpanded) {
       searchInputRef.current?.focus()
-    } else if (popupExpanded) {
-      searchInputRef.current?.focus()
-      if (list[0] !== undefined) {
+      if (!displayValue && list[0] !== undefined) {
         scrollListToId(0, true)
         setKeyboardCursor(0)
         setActiveListItem(String(filteredList[0].id))
@@ -115,20 +113,12 @@ export function ComboBox({
 
   function scrollListToId(num: number, id?: true) {
     const map = getMap()
-
-    if (id) {
-      map.get(filteredList[num].id)?.scrollIntoView({
-        behavior: 'instant',
-        block: 'nearest',
-        inline: 'center',
-      })
-    } else {
-      map.get(filteredList[keyboardCursor + num].id)?.scrollIntoView({
-        behavior: 'instant',
-        block: 'nearest',
-        inline: 'center',
-      })
-    }
+    const position = id ? num : num + keyboardCursor
+    map.get(filteredList[position].id)?.scrollIntoView({
+      behavior: 'instant',
+      block: 'nearest',
+      inline: 'center',
+    })
   }
 
   function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
