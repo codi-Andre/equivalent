@@ -9,6 +9,7 @@ import {
 } from 'react'
 import { UserInput } from './FoodContext.intefaces'
 import { AxiosResponse } from 'axios'
+import { sortList } from './FoodContext.utils'
 
 interface ContextData {
   foodList: Food[]
@@ -44,15 +45,7 @@ export default function FoodProvider({ children }: FoodContextProps) {
     const response = await createFood(food)
 
     if (response !== undefined && response.status < 300) {
-      setFoodList(foodList =>
-        [...foodList, response.data].sort((a, b) => {
-          if (a.name < b.name) return -1
-
-          if (a.name > b.name) return 1
-
-          return 0
-        }),
-      )
+      setFoodList(foodList => sortList(foodList, response.data))
     }
 
     return response
