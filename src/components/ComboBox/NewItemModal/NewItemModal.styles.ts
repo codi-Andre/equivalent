@@ -81,13 +81,13 @@ export const FormButton = styled(Button)<{ submitting?: boolean }>`
   border-radius: 6px;
   cursor: pointer;
   padding: 0.5rem;
-  border: 2px solid #e9e9ed;
 
   height: inherit;
   width: inherit;
   position: relative;
 
   ${({ theme, submitting }) => css`
+    border: 2px solid ${theme.colors.tertiary};
     color: ${submitting ? 'transparent' : 'inherit'};
 
     &:hover:disabled {
