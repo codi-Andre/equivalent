@@ -5,6 +5,7 @@ export default {
     grayDark: '#E2E1E3',
     primary: '#DECCFD',
     secondary: '#241817',
+    tertiary: '#e9e9ed',
     success: '#84D8DA',
     warning: 'yellow',
     danger: 'red',
