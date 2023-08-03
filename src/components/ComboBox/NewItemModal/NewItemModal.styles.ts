@@ -98,7 +98,7 @@ export const FormButton = styled(Button)<{ submitting?: boolean }>`
       display: ${submitting ? 'inline-block' : 'none'};
       animation: 1.5s linear infinite ${spinnerAnimation};
       border: solid 5px ${theme.colors.light};
-      border-bottom-color: ${theme.colors.accent};
+      border-bottom-color: ${theme.colors.secondary};
       border-radius: 50%;
       content: '';
       height: 30px;

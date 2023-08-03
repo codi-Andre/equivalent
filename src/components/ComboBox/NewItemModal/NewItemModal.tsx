@@ -25,13 +25,13 @@ export function NewItemModal({
   const { newToast } = useToast()
 
   const [submitting, setSubmitting] = useState<boolean>(false)
-  const [open, setOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
-    if (open === false) {
+    if (modalOpen === false) {
       setSubmitting(false)
     }
-  }, [open])
+  }, [modalOpen])
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
@@ -44,25 +44,29 @@ export function NewItemModal({
     if (response !== undefined && response.status < 300) {
       newSelectedValue(response.data)
       newToast('success', locale.addFoodNotificationSuccess)
-      setOpen(false)
+      setModalOpen(false)
+      displayRef.current?.focus()
     } else {
       newToast('failure', locale.addFoodNotificationFailure)
     }
-
     setSubmitting(false)
   }
 
   return (
     <Dialog.Root
-      modal
-      open={open}
-      onOpenChange={setOpen}
+      open={modalOpen}
+      onOpenChange={setModalOpen}
     >
       <Dialog.Trigger asChild>
         <S.Trigger
           title={locale.addNewFoodTitle}
           onKeyDown={e => {
-            if (!e.shiftKey && e.code === 'Tab') setPopupExpanded(false)
+            if (!e.shiftKey && e.code === 'Tab') {
+              setPopupExpanded(false)
+            } else if (e.code === 'Escape') {
+              setPopupExpanded(false)
+              displayRef.current?.focus()
+            }
           }}
         >
           <Icon name="add" />
@@ -70,7 +74,7 @@ export function NewItemModal({
       </Dialog.Trigger>
       <Dialog.Portal>
         <S.Overlay />
-        <S.Content>
+        <S.Content onEscapeKeyDown={() => setPopupExpanded(true)}>
           <S.CloseButton>
             <Icon name="close" />
           </S.CloseButton>
