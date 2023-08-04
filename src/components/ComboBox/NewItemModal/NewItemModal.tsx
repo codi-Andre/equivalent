@@ -5,7 +5,7 @@ import locale from '@/assets/locale.json'
 import { useComboBox } from '../ComboBox'
 import { FormEvent, RefObject, useEffect, useState } from 'react'
 import { Food } from '@/entities/food'
-import { useFood, useToast } from '@/contexts'
+import { ToastStatus, useFood, useToast } from '@/contexts'
 
 interface NewItemModalProps {
   id: string
@@ -43,11 +43,11 @@ export function NewItemModal({
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
       newSelectedValue(response.data)
-      newToast('success', locale.addFoodNotificationSuccess)
+      newToast(ToastStatus.Success, locale.addFoodNotificationSuccess)
       setModalOpen(false)
       displayRef.current?.focus()
     } else {
-      newToast('failure', locale.addFoodNotificationFailure)
+      newToast(ToastStatus.Failure, locale.addFoodNotificationFailure)
     }
     setSubmitting(false)
   }
