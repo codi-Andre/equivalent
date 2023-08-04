@@ -36,25 +36,25 @@ export const ToastContainer = styled.div<{ type: ToastStatus }>`
 
   ${({ theme, type }) => {
     switch (type) {
-      case 'success':
+      case ToastStatus.Success:
         return css`
           & div span:first-child {
             color: ${theme.colors.accent};
           }
         `
-      case 'failure':
+      case ToastStatus.Failure:
         return css`
           & div span:first-child {
             color: ${theme.colors.danger};
           }
         `
-      case 'warning':
+      case ToastStatus.Warning:
         return css`
           & div span:first-child {
             color: ${theme.colors.danger};
           }
         `
-      case 'info':
+      case ToastStatus.Info:
         return css`
           & div span:first-child {
             color: ${theme.colors.danger};
@@ -108,19 +108,19 @@ export const ProgressBar = styled.div<{ type: ToastStatus }>`
 
     ${({ theme, type }) => {
       switch (type) {
-        case 'success':
+        case ToastStatus.Success:
           return css`
             background-color: ${theme.colors.accent};
           `
-        case 'failure':
+        case ToastStatus.Failure:
           return css`
             background-color: ${theme.colors.danger};
           `
-        case 'warning':
+        case ToastStatus.Warning:
           return css`
             background-color: ${theme.colors.warning};
           `
-        case 'info':
+        case ToastStatus.Info:
           return css`
             background-color: skyblue;
           `
