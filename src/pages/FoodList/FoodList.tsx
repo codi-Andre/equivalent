@@ -1,9 +1,9 @@
 import { useFood } from '@/contexts'
 import * as S from './FoodList.styles'
 import { useState } from 'react'
-import locale from '@/assets/locale.json'
-import { Icon } from '@/components'
 import { Taskbar } from './Taskbar/Taskbar'
+import locale from '@/assets/locale.json'
+import { DeleteItemDialog } from './DeleteItemDialog/DeleteItemDialog'
 
 export function FoodList() {
   const { foodList } = useFood()
@@ -26,12 +26,10 @@ export function FoodList() {
           filteredList.map(food => (
             <li key={food.id}>
               {food.name}{' '}
-              <S.TrashButton
-                title={`${locale.deleteButton} ${food.name}`}
-                isNegative
-              >
-                <Icon name="delete" />
-              </S.TrashButton>
+              <DeleteItemDialog
+                itemName={food.name}
+                itemId={String(food.id)}
+              />
             </li>
           ))
         ) : (

@@ -11,6 +11,8 @@
   "clearButton": "Limpar",
   "deleteButton": "excluir",
   "submitButton": "Adicionar",
+  "acceptButton": "Sim",
+  "declineButton": "Não",
   "chooseOption": "Escolha uma opção",
   "chooseQuantity": "Escolha a quantidade",
   "filteredListStatus": "Nada encontrado.",
@@ -24,6 +26,9 @@
   "addNewFoodFats": "Gorduras:",
   "addNewFoodProteins": "Proteínas:",
   "addNewFoodCategory": "Categoria:",
-  "addFoodNotificationSuccess": "O alimento foi adicionado",
-  "addFoodNotificationFailure": "Não foi possivel adicionar o alimento"
+  "addFoodNotificationSuccess": "O alimento foi adicionado.",
+  "addFoodNotificationFailure": "Não foi possivel adicionar o alimento.",
+  "deleteFoodNotificationQuestion": "Você tem certeza que deseja excluir?",
+  "deleteFoodNotificationSuccess": "O alimento foi excluído.",
+  "deleteFoodNotificationFailure": "Não foi possivel excluir o alimento."
 }
