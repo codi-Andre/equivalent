@@ -1,4 +1,4 @@
-import { getFoodList, createFood } from '@/api'
+import { getFoodList, createFood, deleteFood } from '@/api'
 import { Food } from '@/entities/food'
 import {
   ReactNode,
@@ -16,6 +16,7 @@ interface ContextData {
   updateList: () => void
   calculateEquivalent: (userInput: UserInput) => number
   addFood: (food: Food) => Promise<AxiosResponse | undefined>
+  removeFood: (foodId: string) => Promise<AxiosResponse | undefined>
 }
 
 interface FoodContextProps {
@@ -51,6 +52,20 @@ export default function FoodProvider({ children }: FoodContextProps) {
     return response
   }
 
+  async function removeFood(
+    foodId: string,
+  ): Promise<AxiosResponse | undefined> {
+    const response = await deleteFood(foodId)
+
+    if (response !== undefined && response.status < 300) {
+      setFoodList(foodList =>
+        foodList.filter(food => food.id !== Number(foodId)),
+      )
+    }
+
+    return response
+  }
+
   function calculateEquivalent(userInput: UserInput) {
     // encontra o valor calórico de uma grama
     const baseFoodCaloriesPerGram = Number(
@@ -79,6 +94,7 @@ export default function FoodProvider({ children }: FoodContextProps) {
         updateList,
         calculateEquivalent,
         addFood,
+        removeFood,
       }}
     >
       {children}
