@@ -9,7 +9,7 @@
   "quantitySelector": "Quantidade (g)",
   "calcButton": "Calcular",
   "clearButton": "Limpar",
-  "deleteButton": "excluir",
+  "deleteButton": "Excluir",
   "submitButton": "Adicionar",
   "acceptButton": "Sim",
   "declineButton": "Não",
@@ -29,6 +29,9 @@
   "addFoodNotificationSuccess": "O alimento foi adicionado.",
   "addFoodNotificationFailure": "Não foi possivel adicionar o alimento.",
   "deleteFoodNotificationQuestion": "Você tem certeza que deseja excluir?",
+  "deletePrefix": "O alimento",
+  "deleteSufix": "será excluido.",
   "deleteFoodNotificationSuccess": "O alimento foi excluído.",
-  "deleteFoodNotificationFailure": "Não foi possivel excluir o alimento."
+  "deleteFoodNotificationFailure": "Não foi possivel excluir o alimento.",
+  "AddOrDelete": "Adicione ou exclua alimentos"
 }

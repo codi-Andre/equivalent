@@ -16,7 +16,7 @@ export function FoodList() {
 
   return (
     <S.Container>
-      <h2>Adicione ou exclua alimentos</h2>
+      <h2>{locale.AddOrDelete}</h2>
       <Taskbar
         query={query}
         setQuery={setQuery}
