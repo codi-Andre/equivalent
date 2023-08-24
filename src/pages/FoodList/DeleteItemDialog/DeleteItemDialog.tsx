@@ -4,6 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import locale from '@/assets/locale.json'
 import { useEffect, useState } from 'react'
 import { ToastStatus, useFood, useToast } from '@/contexts'
+import { showDeleteText } from './DeleteItemDialog.utils'
 
 interface DeleteItemDialogProps {
   itemName: string
@@ -54,22 +55,20 @@ export function DeleteItemDialog({ itemName, itemId }: DeleteItemDialogProps) {
         <S.Content>
           <Dialog.Title>{locale.deleteFoodNotificationQuestion}</Dialog.Title>
           <Dialog.Description>
-            O alimento &apos;{itemName}&apos; será excluido.
+            {showDeleteText(locale.deletePrefix, itemName, locale.deleteSufix)}
           </Dialog.Description>
           <div>
             <S.FormButton
               onClick={() => handleDeleteItem(itemId)}
               submitting={submitting}
               disabled={submitting}
+              isNegative
             >
               {locale.acceptButton}
               <span></span>
             </S.FormButton>
             <Dialog.Close asChild>
-              <S.FormButton
-                isNegative
-                disabled={submitting}
-              >
+              <S.FormButton disabled={submitting}>
                 {locale.declineButton}
               </S.FormButton>
             </Dialog.Close>
