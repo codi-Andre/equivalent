@@ -79,7 +79,7 @@ function Home() {
             {showResult
               ? showResult > 1
                 ? showResult + ' ' + locale.resultInGrams
-                : showResult + ' ' + locale.ResultInGram
+                : showResult + ' ' + locale.resultInGram
               : null}
           </Result>
         </ResultTitle>
