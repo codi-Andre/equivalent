@@ -115,7 +115,7 @@ export function ComboBox({
     const map = getMap()
     const position = id ? num : num + keyboardCursor
     map.get(filteredList[position].id)?.scrollIntoView({
-      behavior: 'instant',
+      behavior: 'auto',
       block: 'nearest',
       inline: 'center',
     })
