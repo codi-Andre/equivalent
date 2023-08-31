@@ -75,6 +75,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 id={`addNewFoodQuantity-pg2`}
                 type="number"
                 name={`quantity`}
+                step={0.01}
                 required
                 disabled={submitting}
               />
@@ -86,6 +87,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 id={`addNewFoodCalories-pg2`}
                 type="number"
                 name={`calories`}
+                step={0.01}
                 required
                 disabled={submitting}
               />
@@ -97,6 +99,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 id={`addNewFoodCarbohydrates-pg2`}
                 type="number"
                 name={`carbohydrates`}
+                step={0.01}
                 required
                 disabled={submitting}
               />
@@ -108,6 +111,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 id={`addNewFoodFats-pg2`}
                 type="number"
                 name={`fats`}
+                step={0.01}
                 required
                 disabled={submitting}
               />
@@ -119,6 +123,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 id={`addNewFoodProteins-pg2`}
                 type="number"
                 name={`proteins`}
+                step={0.01}
                 required
                 disabled={submitting}
               />

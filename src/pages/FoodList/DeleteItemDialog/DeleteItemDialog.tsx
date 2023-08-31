@@ -28,7 +28,7 @@ export function DeleteItemDialog({ itemName, itemId }: DeleteItemDialogProps) {
     const response = await removeFood(id)
 
     if (response !== undefined && response.status < 300) {
-      newToast(ToastStatus.Success, locale.deleteFoodNotificationSuccess)
+      newToast(ToastStatus.Failure, locale.deleteFoodNotificationSuccess)
       setIsOpen(false)
     } else {
       newToast(ToastStatus.Failure, locale.deleteFoodNotificationFailure)
