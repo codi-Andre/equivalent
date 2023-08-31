@@ -101,6 +101,7 @@ export function NewItemModal({
               id={`addNewFoodQuantity-${id}`}
               type="number"
               name={`quantity`}
+              step={0.01}
               required
               disabled={submitting}
             />
@@ -112,6 +113,7 @@ export function NewItemModal({
               id={`addNewFoodCalories-${id}`}
               type="number"
               name={`calories`}
+              step={0.01}
               required
               disabled={submitting}
             />
@@ -123,6 +125,7 @@ export function NewItemModal({
               id={`addNewFoodCarbohydrates-${id}`}
               type="number"
               name={`carbohydrates`}
+              step={0.01}
               required
               disabled={submitting}
             />
@@ -134,6 +137,7 @@ export function NewItemModal({
               id={`addNewFoodFats-${id}`}
               type="number"
               name={`fats`}
+              step={0.01}
               required
               disabled={submitting}
             />
@@ -145,6 +149,7 @@ export function NewItemModal({
               id={`addNewFoodProteins-${id}`}
               type="number"
               name={`proteins`}
+              step={0.01}
               required
               disabled={submitting}
             />
