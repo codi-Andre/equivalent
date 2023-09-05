@@ -23,6 +23,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
     const formData = new FormData(event.target as HTMLFormElement)
     const newItem = Object.fromEntries(formData.entries())
     const newFood = Object(newItem) as Food
+    newFood.quantity = 100
 
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
@@ -54,6 +55,8 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
             </S.CloseButton>
 
             <Dialog.Title>{locale.addNewFoodTitle}</Dialog.Title>
+            <S.Description>{locale.addNewFoodDescription}</S.Description>
+
             <S.FormContainer onSubmit={handleSubmit}>
               <label htmlFor={`addNewFoodName-pg2`}>
                 {locale.addNewFoodName}
@@ -64,18 +67,6 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 type="text"
                 name={`name`}
                 defaultValue={query}
-                required
-                disabled={submitting}
-              />
-
-              <label htmlFor={`addNewFoodQuantity-pg2`}>
-                {locale.addNewFoodQuantity}
-              </label>
-              <input
-                id={`addNewFoodQuantity-pg2`}
-                type="number"
-                name={`quantity`}
-                step={0.01}
                 required
                 disabled={submitting}
               />
