@@ -94,18 +94,6 @@ export function NewItemModal({
               disabled={submitting}
             />
 
-            <label htmlFor={`addNewFoodQuantity-${id}`}>
-              {locale.addNewFoodQuantity}
-            </label>
-            <input
-              id={`addNewFoodQuantity-${id}`}
-              type="number"
-              name={`quantity`}
-              step={0.01}
-              required
-              disabled={submitting}
-            />
-
             <label htmlFor={`addNewFoodCalories-${id}`}>
               {locale.addNewFoodCalories}
             </label>

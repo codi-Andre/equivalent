@@ -102,6 +102,14 @@ export const Content = styled(Dialog.Content)`
   }
 `
 
+export const Description = styled(Dialog.Description)`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.secondary};
+  opacity: 60%;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+`
+
 export const FormContainer = styled.form`
   display: grid;
   grid-template-columns: 86px 1fr;
