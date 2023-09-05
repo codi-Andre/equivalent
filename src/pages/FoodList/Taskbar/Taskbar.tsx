@@ -128,11 +128,11 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
                 disabled={submitting}
               />
 
-              <label htmlFor={`addNewFoodCategory-pg2`}>
-                {locale.addNewFoodCategory}
+              <label htmlFor={`addNewFoodGroup-pg2`}>
+                {locale.addNewFoodGroup}
               </label>
               <input
-                id={`addNewFoodCategory-pg2`}
+                id={`addNewFoodGroup-pg2`}
                 type="text"
                 name={`category`}
                 disabled={submitting}

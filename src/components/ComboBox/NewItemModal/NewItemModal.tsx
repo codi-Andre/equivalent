@@ -154,11 +154,11 @@ export function NewItemModal({
               disabled={submitting}
             />
 
-            <label htmlFor={`addNewFoodCategory-${id}`}>
-              {locale.addNewFoodCategory}
+            <label htmlFor={`addNewFoodGroup-${id}`}>
+              {locale.addNewFoodGroup}
             </label>
             <input
-              id={`addNewFoodCategory-${id}`}
+              id={`addNewFoodGroup-${id}`}
               type="text"
               name={`category`}
               disabled={submitting}

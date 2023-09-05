@@ -25,7 +25,7 @@
   "addNewFoodCarbohydrates": "Carboidratos:",
   "addNewFoodFats": "Gorduras:",
   "addNewFoodProteins": "Proteínas:",
-  "addNewFoodCategory": "Categoria:",
+  "addNewFoodGroup": "Grupo:",
   "addFoodNotificationSuccess": "O alimento foi adicionado.",
   "addFoodNotificationFailure": "Não foi possivel adicionar o alimento.",
   "deleteFoodNotificationQuestion": "Você tem certeza que deseja excluir?",
