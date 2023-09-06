@@ -6,6 +6,7 @@ import { useComboBox } from '../ComboBox'
 import { FormEvent, RefObject, useEffect, useState } from 'react'
 import { Food } from '@/entities/food'
 import { ToastStatus, useFood, useToast } from '@/contexts'
+import { FormToAddFood } from '@/components/FormToAddFood/FormToAddFood'
 
 interface NewItemModalProps {
   id: string
@@ -15,7 +16,6 @@ interface NewItemModalProps {
 }
 
 export function NewItemModal({
-  id,
   name,
   displayRef,
   newSelectedValue,
@@ -24,7 +24,7 @@ export function NewItemModal({
   const { setPopupExpanded } = useComboBox()
   const { newToast } = useToast()
 
-  const [submitting, setSubmitting] = useState<boolean>(false)
+  const [submitting, setSubmitting] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
@@ -39,6 +39,7 @@ export function NewItemModal({
     const formData = new FormData(event.target as HTMLFormElement)
     const newItem = Object.fromEntries(formData.entries())
     const newFood = Object(newItem) as Food
+    newFood.quantity = 100
 
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
@@ -80,96 +81,14 @@ export function NewItemModal({
           </S.CloseButton>
 
           <Dialog.Title>{locale.addNewFoodTitle}</Dialog.Title>
-          <S.FormContainer onSubmit={handleSubmit}>
-            <label htmlFor={`addNewFoodName-${id}`}>
-              {locale.addNewFoodName}
-            </label>
-            <input
-              autoFocus
-              id={`addNewFoodName-${id}`}
-              type="text"
-              name={`name`}
-              defaultValue={name}
-              required
-              disabled={submitting}
-            />
+          <S.Description>{locale.addNewFoodDescription}</S.Description>
 
-            <label htmlFor={`addNewFoodCalories-${id}`}>
-              {locale.addNewFoodCalories}
-            </label>
-            <input
-              id={`addNewFoodCalories-${id}`}
-              type="number"
-              name={`calories`}
-              step={0.01}
-              required
-              disabled={submitting}
-            />
-
-            <label htmlFor={`addNewFoodCarbohydrates-${id}`}>
-              {locale.addNewFoodCarbohydrates}
-            </label>
-            <input
-              id={`addNewFoodCarbohydrates-${id}`}
-              type="number"
-              name={`carbohydrates`}
-              step={0.01}
-              required
-              disabled={submitting}
-            />
-
-            <label htmlFor={`addNewFoodFats-${id}`}>
-              {locale.addNewFoodFats}
-            </label>
-            <input
-              id={`addNewFoodFats-${id}`}
-              type="number"
-              name={`fats`}
-              step={0.01}
-              required
-              disabled={submitting}
-            />
-
-            <label htmlFor={`addNewFoodProteins-${id}`}>
-              {locale.addNewFoodProteins}
-            </label>
-            <input
-              id={`addNewFoodProteins-${id}`}
-              type="number"
-              name={`proteins`}
-              step={0.01}
-              required
-              disabled={submitting}
-            />
-
-            <label htmlFor={`addNewFoodGroup-${id}`}>
-              {locale.addNewFoodGroup}
-            </label>
-            <input
-              id={`addNewFoodGroup-${id}`}
-              type="text"
-              name={`category`}
-              disabled={submitting}
-            />
-
-            <div>
-              <S.FormButton
-                submitting={submitting}
-                disabled={submitting}
-                type="submit"
-              >
-                {locale.submitButton}
-                <span></span>
-              </S.FormButton>
-              <S.FormButton
-                isNegative
-                disabled={submitting}
-                type="reset"
-              >
-                {locale.clearButton}
-              </S.FormButton>
-            </div>
-          </S.FormContainer>
+          <FormToAddFood
+            handleSubmit={handleSubmit}
+            id="combo-box"
+            isSubmitting={submitting}
+            newFoodName={name}
+          />
         </S.Content>
       </Dialog.Portal>
     </Dialog.Root>
