@@ -5,6 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { FormEvent, useState } from 'react'
 import { ToastStatus, useFood, useToast } from '@/contexts'
 import { Food } from '@/entities/food'
+import { FormToAddFood } from '@/components'
 
 interface TaskbarProps {
   query: string
@@ -16,6 +17,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
   const { newToast } = useToast()
 
   const [submitting, setSubmitting] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
@@ -28,6 +30,7 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
     const response = await addFood(newFood)
     if (response !== undefined && response.status < 300) {
       newToast(ToastStatus.Success, locale.addFoodNotificationSuccess)
+      setIsModalOpen(false)
     } else {
       newToast(ToastStatus.Failure, locale.addFoodNotificationFailure)
     }
@@ -43,7 +46,10 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
         onChange={e => setQuery(e.target.value)}
       />
 
-      <Dialog.Root>
+      <Dialog.Root
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      >
         <Dialog.Trigger asChild>
           <S.Trigger>{locale.submitButton}</S.Trigger>
         </Dialog.Trigger>
@@ -57,96 +63,12 @@ export function Taskbar({ query, setQuery }: TaskbarProps) {
             <Dialog.Title>{locale.addNewFoodTitle}</Dialog.Title>
             <S.Description>{locale.addNewFoodDescription}</S.Description>
 
-            <S.FormContainer onSubmit={handleSubmit}>
-              <label htmlFor={`addNewFoodName-pg2`}>
-                {locale.addNewFoodName}
-              </label>
-              <input
-                autoFocus
-                id={`addNewFoodName-pg2`}
-                type="text"
-                name={`name`}
-                defaultValue={query}
-                required
-                disabled={submitting}
-              />
-
-              <label htmlFor={`addNewFoodCalories-pg2`}>
-                {locale.addNewFoodCalories}
-              </label>
-              <input
-                id={`addNewFoodCalories-pg2`}
-                type="number"
-                name={`calories`}
-                step={0.01}
-                required
-                disabled={submitting}
-              />
-
-              <label htmlFor={`addNewFoodCarbohydrates-pg2`}>
-                {locale.addNewFoodCarbohydrates}
-              </label>
-              <input
-                id={`addNewFoodCarbohydrates-pg2`}
-                type="number"
-                name={`carbohydrates`}
-                step={0.01}
-                required
-                disabled={submitting}
-              />
-
-              <label htmlFor={`addNewFoodFats-pg2`}>
-                {locale.addNewFoodFats}
-              </label>
-              <input
-                id={`addNewFoodFats-pg2`}
-                type="number"
-                name={`fats`}
-                step={0.01}
-                required
-                disabled={submitting}
-              />
-
-              <label htmlFor={`addNewFoodProteins-pg2`}>
-                {locale.addNewFoodProteins}
-              </label>
-              <input
-                id={`addNewFoodProteins-pg2`}
-                type="number"
-                name={`proteins`}
-                step={0.01}
-                required
-                disabled={submitting}
-              />
-
-              <label htmlFor={`addNewFoodGroup-pg2`}>
-                {locale.addNewFoodGroup}
-              </label>
-              <input
-                id={`addNewFoodGroup-pg2`}
-                type="text"
-                name={`category`}
-                disabled={submitting}
-              />
-
-              <div>
-                <S.FormButton
-                  submitting={submitting}
-                  disabled={submitting}
-                  type="submit"
-                >
-                  {locale.submitButton}
-                  <span></span>
-                </S.FormButton>
-                <S.FormButton
-                  isNegative
-                  disabled={submitting}
-                  type="reset"
-                >
-                  {locale.clearButton}
-                </S.FormButton>
-              </div>
-            </S.FormContainer>
+            <FormToAddFood
+              handleSubmit={handleSubmit}
+              id="task-bar"
+              isSubmitting={submitting}
+              newFoodName={query}
+            />
           </S.Content>
         </Dialog.Portal>
       </Dialog.Root>
