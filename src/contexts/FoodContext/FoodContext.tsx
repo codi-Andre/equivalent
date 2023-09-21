@@ -1,5 +1,6 @@
-import { getFoodList, createFood, deleteFood } from '@/api'
+import { createFood, deleteFood, getFoodList } from '@/api'
 import { Food } from '@/entities/food'
+import { AxiosResponse } from 'axios'
 import {
   ReactNode,
   createContext,
@@ -8,7 +9,6 @@ import {
   useState,
 } from 'react'
 import { UserInput } from './FoodContext.intefaces'
-import { AxiosResponse } from 'axios'
 import { sortList } from './FoodContext.utils'
 
 interface ContextData {
@@ -58,9 +58,7 @@ export default function FoodProvider({ children }: FoodContextProps) {
     const response = await deleteFood(foodId)
 
     if (response !== undefined && response.status < 300) {
-      setFoodList(foodList =>
-        foodList.filter(food => food.id !== Number(foodId)),
-      )
+      setFoodList(foodList => foodList.filter(food => food.id !== foodId))
     }
 
     return response
