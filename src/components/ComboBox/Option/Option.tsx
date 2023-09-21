@@ -18,10 +18,10 @@ export function Option({ food, active, selected, setSelected }: OptionProps) {
       className={`option-${active ? 'active' : ''} ${
         selected ? 'option-selected' : ''
       }`}
-      id={String(food.id)}
+      id={food.id}
       aria-selected={active}
       ref={node => getRefMap(node, food)}
-      onMouseEnter={() => setHovered(String(food.id))}
+      onMouseEnter={() => setHovered(food.id)}
       onMouseLeave={() => setHovered(undefined)}
       onClick={() => setSelected(food)}
     >

@@ -1,3 +1,4 @@
+import locale from '@/assets/locale.json'
 import { Food } from '@/entities/food'
 import {
   KeyboardEvent,
@@ -7,13 +8,12 @@ import {
   useRef,
   useState,
 } from 'react'
-import { SearchInput } from './SearchInput/SearchInput'
-import { ListBox } from './ListBox/ListBox'
-import { Option } from './Option/Option'
 import * as S from './ComboBox.styles'
 import { DisplayInput } from './Display/Display'
-import locale from '@/assets/locale.json'
+import { ListBox } from './ListBox/ListBox'
 import { NewItemModal } from './NewItemModal/NewItemModal'
+import { Option } from './Option/Option'
+import { SearchInput } from './SearchInput/SearchInput'
 
 interface ComboBoxContextData {
   activeListItem: string
@@ -39,7 +39,7 @@ export function ComboBox({
   displayValue,
   selectedValue,
 }: ComboBoxProps) {
-  const ListItemsRef = useRef<Map<number, HTMLLIElement> | null>(null)
+  const ListItemsRef = useRef<Map<string, HTMLLIElement> | null>(null)
   const displayRef = useRef<HTMLDivElement | null>(null)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
 
@@ -63,9 +63,7 @@ export function ComboBox({
 
   useEffect(() => {
     if (filteredList.length && hovered) {
-      setKeyboardCursor(
-        filteredList.findIndex(food => food.id === Number(hovered)),
-      )
+      setKeyboardCursor(filteredList.findIndex(food => food.id === hovered))
       setActiveListItem(hovered)
     }
   }, [hovered])
@@ -111,7 +109,7 @@ export function ComboBox({
     }
   }
 
-  function scrollListToId(num: number, id?: true) {
+  function scrollListToId(num: number, id?: boolean) {
     const map = getMap()
     const position = id ? num : num + keyboardCursor
     map.get(filteredList[position].id)?.scrollIntoView({
